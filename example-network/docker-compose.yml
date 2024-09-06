@@ -1,0 +1,130 @@
+x-besu: &besu
+  image: hyperledger/besu:24.8.0
+
+services:
+  validator1:
+    <<: *besu
+    hostname: validator-1
+    volumes:
+      - "./data/node1:/data/"
+      - "./config/genesis.json:/config/genesis.json"
+      - "./config/static.nodes.json:/config/static.nodes.json"
+      - "./config/config.toml:/config/config.toml"
+      - "./validators/node1/key:/config/key"
+    command:
+      - --data-path=/data/
+      - --config-file=/config/config.toml
+      - --miner-coinbase=0x48055998e4f67cf2b018e67faa728cb05dcd2a31
+      - --node-private-key-file=/config/key
+    networks:
+      besu-network:
+        ipv4_address: 172.18.1.2
+  validator2:
+    <<: *besu
+    hostname: validator-2
+    volumes:
+      - "./data/node2:/data/"
+      - "./config/genesis.json:/config/genesis.json"
+      - "./config/static.nodes.json:/config/static.nodes.json"
+      - "./config/config.toml:/config/config.toml"
+      - "./validators/node2/key:/config/key"
+    command:
+      - --data-path=/data/
+      - --config-file=/config/config.toml
+      - --miner-coinbase=0xa4ec16934834abc43443f71b472331a6d2de3982
+      - --node-private-key-file=/config/key
+    networks:
+      besu-network:
+        ipv4_address: 172.18.1.3
+  validator3:
+    <<: *besu
+    hostname: validator-3
+    volumes:
+      - "./data/node3:/data/"
+      - "./config/genesis.json:/config/genesis.json"
+      - "./config/static.nodes.json:/config/static-nodes.json"
+      - "./config/config.toml:/config/config.toml"
+      - "./validators/node3/key:/config/key"
+    command:
+      - --data-path=/data/
+      - --config-file=/config/config.toml
+      - --miner-coinbase=0xb15310144dbb6ba97e77af10f5467d2bd7fd9d85
+      - --node-private-key-file=/config/key
+    networks:
+      besu-network:
+        ipv4_address: 172.18.1.4
+  validator4:
+    <<: *besu
+    hostname: validator-4
+    volumes:
+      - "./data/node4:/data/"
+      - "./config/genesis.json:/config/genesis.json"
+      - "./config/static.nodes.json:/config/static.nodes.json"
+      - "./config/config.toml:/config/config.toml"
+      - "./validators/node4/key:/config/key"
+    command:
+      - --data-path=/data/
+      - --config-file=/config/config.toml
+      - --miner-coinbase=0xf6ed2188f1803cf150b753428dc9523003d6b7ec
+      - --node-private-key-file=/config/key
+    networks:
+      besu-network:
+        ipv4_address: 172.18.1.5
+  rpc:
+    <<: *besu
+    hostname: rpc
+    volumes:
+      - "./data/rpc:/data/"
+      - "./config/genesis.json:/config/genesis.json"
+      - "./config/static.nodes.json:/config/static.nodes.json"
+      - "./config/config.rpc.toml:/config/config.rpc.toml"
+    command:
+      - --data-path=/data/
+      - --config-file=/config/config.rpc.toml
+    ports:
+      - "30303:30303"
+      - "8545:8545"
+      - "8546:8546"
+    networks:
+      besu-network:
+        ipv4_address: 172.18.1.6
+  # besu-bootnode1:
+  #   << : *besu
+  #   hostname: besu-bootnode1
+  #   volumes:
+  #     - "./data/rpc:/data/"
+  #     - "./config/genesis.json:/config/genesis.json"
+  #     - "./config/config.bootnode.toml:/config/config.bootnode.toml"
+  #     - "./bootnodes/bootnode1/key:/config/key"
+  #   command:
+  #     - --data-path=/data/
+  #
+  #     - --config-file=/config/config.bootnode.toml
+  #     - --node-private-key-file=/config/key
+  #   networks:
+  #     besu-network:
+  #       ipv4_address: 172.18.1.7
+  # besu-bootnode2:
+  #   << : *besu
+  #   hostname: besu-bootnode2
+  #   volumes:
+  #     - "./data/rpc:/data/"
+  #     - "./config/genesis.json:/config/genesis.json"
+  #     - "./config/config.bootnode.toml:/config/config.bootnode.toml"
+  #     - "./bootnodes/bootnode2/key:/config/key"
+  #   command:
+  #     - --data-path=/data/
+  #
+  #     - --config-file=/config/config.bootnode.toml
+  #     - --node-private-key-file=/config/key
+  #   networks:
+  #     besu-network:
+  #       ipv4_address: 172.18.1.8
+networks:
+  besu-network:
+    name: besu-network
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.18.0.0/16
