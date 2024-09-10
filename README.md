@@ -35,11 +35,11 @@ However, it still requires a currency symbol for functional representation for t
 - **Storage:** SSD is recommended for faster data access and better overall performance.
 - **RPC:** is running as archive node not pruning any data.
 
-  | Node Type  | Minimum | Recommended |
-  | ---------- | ------- | ----------- |
-  | validators | 4       | 8           |
-  | boot       | 2       | 4           |
-  | rpc        | 2       | n > 2       |
+  | Node Type  | Recommended | Minimum |
+  | ---------- | ----------- | ------- |
+  | validators | 8           | 4       |
+  | boot       | 4           | 2       |
+  | rpc        | n > 2       | 2       |
 
   The `[experiment]` section in the `config.toml` can be used to fine-tune network performance based on your specific deployment requirements.
 
@@ -64,9 +64,13 @@ Stateful Precompiled Contract
 
 Smart Contract
 
-- `AssetFactory`
-- `CampaignFactory`  
-  source code [repository](https://github.com/Kiwari-labs)
+| Contract Name      | Mainnet Address | Testnet Address |
+| ------------------ | --------------- | --------------- |
+| `AssetFactory`     | `0x`            | `0x`            |
+| `CampaignFactory`  | `0x`            | `0x`            |
+| `AgreementFactory` | `0x`            | `0x`            |
+
+source code [repository](https://github.com/Kiwari-labs)
 
 ### Run example network with docker-compose
 
