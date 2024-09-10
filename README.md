@@ -1,20 +1,20 @@
 # Merit Network
 
-[Merit](https://merit-network.io) is a DLT-based Loyalty Platform that use [hyperledger/besu](https://github.com/hyperledger/besu)  
+[Merit](https://meritnet.io) is a DLT-based Loyalty Platform that use [hyperledger/besu](https://github.com/hyperledger/besu)
 
 ### Network Parameter and Configuration
 
-| Parameter    | Mainnet                             | Testnet                             |
-| ------------ | ----------------------------------- | ----------------------------------- |
-| NETWORK_NAME | `Merit`                             | `Merit Testnet`                     |
-| CHAIN_ID     | `776982`                            | `116776982`                         |
-| SYMBOL       | `MER`                               | `tMER`                              |
-| RPC_URL      | `https://merit.rpc.mainnet.io`      | `https://merit.rpc.testnet.io`      |
-| EXPLORER_URL | `https://merit.explorer.mainnet.io` | `https://merit.explorer.testnet.io` |
-| BLOCK_PERIOD | `3` seconds                         | `12` secondes                       |
+| Parameter    | Mainnet                                | Testnet                                |
+| ------------ | -------------------------------------- | -------------------------------------- |
+| NETWORK_NAME | `Merit`                                | `Merit Testnet`                        |
+| CHAIN_ID     | `776982`                               | `116776982`                            |
+| SYMBOL       | `MER`                                  | `tMER`                                 |
+| RPC_URL      | `https://meritnet.rpc.mainnet.io`      | `https://meritnet.rpc.testnet.io`      |
+| EXPLORER_URL | `https://meritnet.explorer.mainnet.io` | `https://meritnet.explorer.testnet.io` |
+| BLOCK_PERIOD | `3` seconds                            | `12` seconds                           |
 
 `mainnet` is stand for production.  
-`testnet` is stand develop and staging.  
+`testnet` is stand develop and staging.
 
 **`CHAIN_ID` generate form ASCII code of the `SYMBOL`**  
 **The network operates without a native token for transaction fees and is built as a zero-transaction fee system.  
@@ -45,27 +45,28 @@ However, it still requires a currency symbol for functional representation for t
 
 ### Keys differentiate from other `hyperledger/besu` network
 
-``` text
+```text
 🚧 Under construction and development.
 ```
+
 Transaction Validation: based from [`Consensys/permissioning-smart-contracts`](https://github.com/Consensys/permissioning-smart-contracts) but add additional capabilities.
 
 - `rootAddress` can be able to `granted` or `revoked` other role.
 - `developerAddress` can be able to `deploy` the smart contract with threshold limit and `call` to any address.
 - `serviceAddress`/`agentAddress` can be able only to `call` to `address` or `contract` that registered.
 - `clientAddress` can not able to `deploy` but can only `call` to `address` or `contract` that registered.  
-source code [repository](https://github.com/Kiwari-labs)
+  source code [repository](https://github.com/Kiwari-labs)
 
 Stateful Precompiled Contract
 
 - `LinkedListStatefulPrecompiledContract` at address `0xe2a2256098eafc2dd3b907c81d9719d4f569b6c2`  
-source code [repository](https://github.com/Kiwari-labs)
+  source code [repository](https://github.com/Kiwari-labs)
 
 Smart Contract
 
-- `AssetFactory`  
+- `AssetFactory`
 - `CampaignFactory`  
-source code [repository](https://github.com/Kiwari-labs)
+  source code [repository](https://github.com/Kiwari-labs)
 
 ### Run example network with docker-compose
 
@@ -88,7 +89,9 @@ command to clean up and reset network
 ```
 
 ### Support and Issue
+
 For support or any inquiries, feel free to reach out to us at [github-issue]() or kiwarilabs@protonmail.com
 
 ### License
+
 This project is licensed under the BSL-1.1 License. See the [LICENSE](LICENSE) file for more details.
