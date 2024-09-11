@@ -4,6 +4,9 @@
 
 ### Network Parameter and Configuration
 
+`mainnet` is stand for production.  
+`testnet` is stand develop and staging.
+
 | Parameter    | Mainnet                                | Testnet                                |
 | ------------ | -------------------------------------- | -------------------------------------- |
 | NETWORK_NAME | `Merit`                                | `Merit Testnet`                        |
@@ -11,12 +14,11 @@
 | SYMBOL       | `MER`                                  | `tMER`                                 |
 | RPC_URL      | `https://meritnet.rpc.mainnet.io`      | `https://meritnet.rpc.testnet.io`      |
 | EXPLORER_URL | `https://meritnet.explorer.mainnet.io` | `https://meritnet.explorer.testnet.io` |
-| BLOCK_PERIOD | `3` seconds                            | `12` seconds                           |
-| TOKEN_LOGO   | `none`                                  | `none`                                  |
-| NETWORK_LOGO | `none`                                  | `none`                                  |
+| BLOCK_PERIOD | `3` second                             | `12` seconds                           |
+| TOKEN_LOGO   | `none`                                 | `none`                                 |
+| NETWORK_LOGO | `none`                                 | `none`                                 |
 
-`mainnet` is stand for production.  
-`testnet` is stand develop and staging.
+If including latency of network, other service and etc (`~3` seconds). user may wait up to `6` seconds for mainnet and `15` seconds.
 
 **`CHAIN_ID` generate form ASCII code of the `SYMBOL`**  
 **The network operates without a native token for transaction fees and is built as a zero-transaction fee system.  
@@ -85,6 +87,8 @@ Smart Contract
 | `AssetFactoryContract`     | `0x`            | `0x`            |
 | `CampaignFactoryContract`  | `0x`            | `0x`            |
 | `AgreementFactoryContract` | `0x`            | `0x`            |
+
+**Note:** deployed address can be desirable if use pre-deploy contract in genesis configuration file.
 
 source code of each smart contract
 
