@@ -12,13 +12,15 @@
 | RPC_URL      | `https://meritnet.rpc.mainnet.io`      | `https://meritnet.rpc.testnet.io`      |
 | EXPLORER_URL | `https://meritnet.explorer.mainnet.io` | `https://meritnet.explorer.testnet.io` |
 | BLOCK_PERIOD | `3` seconds                            | `12` seconds                           |
+| TOKEN_LOGO   | `none`                                  | `none`                                  |
+| NETWORK_LOGO | `none`                                  | `none`                                  |
 
 `mainnet` is stand for production.  
 `testnet` is stand develop and staging.
 
 **`CHAIN_ID` generate form ASCII code of the `SYMBOL`**  
 **The network operates without a native token for transaction fees and is built as a zero-transaction fee system.  
-However, it still requires a currency symbol for functional representation for third-party wallet application like metamask, rabbit and other.**
+However, it still requires a currency symbol for functional representation for third-party wallet application like metamask, rabbit, block explorer and other.**
 
 ### Node Type and Hardware Requirement
 
@@ -35,13 +37,26 @@ However, it still requires a currency symbol for functional representation for t
 - **Storage:** SSD is recommended for faster data access and better overall performance.
 - **RPC:** is running as archive node not pruning any data.
 
-  | Node Type  | Recommended | Minimum |
-  | ---------- | ----------- | ------- |
-  | validators | 8           | 4       |
-  | boot       | 4           | 2       |
-  | rpc        | n > 2       | 2       |
+### Cloud Service Provider Instance Models/Series
 
-  The `[experiment]` section in the `config.toml` can be used to fine-tune network performance based on your specific deployment requirements.
+|                    | Mainnet (Validator) | Mainnet (RPC)    | Mainnet (Boot)  | Testnet (Validator) | Testnet (RPC)   | Testnet (Boot)       |
+| ------------------ | ------------------- | ---------------- | --------------- | ------------------- | --------------- | -------------------- |
+| Alibaba Cloud      | `ecs.r8a.4xlarge`   | `ecs.g8.2xlarge` | `ecs.g6.large`  | `ecs.g6.large`      | `ecs.c6.large`  | `ecs.t5-lc1m1.small` |
+| Amazon Web Service | `r6i.4xlarge`       | `r6i.2xlarge`    | `c5a.large`     | `c5a.large`         | `c7a.medium`    | `t3.micro`           |
+| Huawei Cloud       | `ai7.4xlarge.8`     | `ai7.2xlarge.8`  | `h3.large.2`    | `h3.large.2`        | `s6.large.2`    | `s6.small.1`         |
+| Microsoft Azure    | `E16ds_v5`          | `E8ds_v5`        | `D2as_v5`       | `D2as_v5`           | `F2s_v2`        | `A1_v2`              |
+| Google Cloud       | `n2-highmem-16`     | `n2-highmem-8`   | `n2-standard-2` | `n2-standard-2`     | `n2-standard-1` | `e2-micro`           |
+| IBM Cloud          | `bx2-16x64`         | `bx2-8x32`       | `bx2-2x8`       | `bx2-2x8`           | `bx2-2x4`       | `bx2-1x2`            |
+
+**Note:** Some instance models may not exactly meet the hardware requirements mentioned above but have been chosen for cost-effectiveness and resource optimization in relation to the tasks of each node.
+
+| Node Type  | Recommended | Minimum |
+| ---------- | ----------- | ------- |
+| validators | 8           | 4       |
+| boot       | 4           | 2       |
+| rpc        | n > 2       | 2       |
+
+The `[experiment]` section in the `config.toml` can be used to fine-tune network performance based on your specific deployment requirements.
 
 ### Keys differentiate from other `hyperledger/besu` network
 
@@ -54,23 +69,28 @@ Transaction Validation: based from [`Consensys/permissioning-smart-contracts`](h
 - `rootAddress` can be able to `granted` or `revoked` other role.
 - `developerAddress` can be able to `deploy` the smart contract with threshold limit and `call` to any address.
 - `serviceAddress`/`agentAddress` can be able only to `call` to `address` or `contract` that registered.
-- `clientAddress` can not able to `deploy` but can only `call` to `address` or `contract` that registered.  
-  source code [repository](https://github.com/Kiwari-labs)
+- `clientAddress` can not able to `deploy` but can only `call` to `address` or `contract` that registered.
 
 Stateful Precompiled Contract
 
-- `LinkedListStatefulPrecompiledContract` at address `0xe2a2256098eafc2dd3b907c81d9719d4f569b6c2`  
-  source code [repository](https://github.com/Kiwari-labs)
+- `LinkedListStatefulPrecompiledContract` at address `0xe2a2256098eafc2dd3b907c81d9719d4f569b6c2`
+
+source code of stateful precompiled can be found on [repository](https://github.com/Kiwari-labs/besu)
 
 Smart Contract
 
-| Contract Name      | Mainnet Address | Testnet Address |
-| ------------------ | --------------- | --------------- |
-| `AssetFactory`     | `0x`            | `0x`            |
-| `CampaignFactory`  | `0x`            | `0x`            |
-| `AgreementFactory` | `0x`            | `0x`            |
+| Contract Name              | Mainnet Address | Testnet Address |
+| -------------------------- | --------------- | --------------- |
+| `PermissioningContract`    | `0x`            | `0x`            |
+| `AssetFactoryContract`     | `0x`            | `0x`            |
+| `CampaignFactoryContract`  | `0x`            | `0x`            |
+| `AgreementFactoryContract` | `0x`            | `0x`            |
 
-source code [repository](https://github.com/Kiwari-labs)
+source code of each smart contract
+
+- permission-contracts [repository](https://github.com/Kiwari-labs/permission-contracts)
+- token-service-contracts [repository](https://github.com/Kiwari-labs/token-service-contracts)
+- token-exchange-contracts [repository](https://github.com/Kiwari-labs/token-exchagne-contracts)
 
 ### Run example network with docker-compose
 
@@ -94,7 +114,7 @@ command to clean up and reset network
 
 ### Support and Issue
 
-For support or any inquiries, feel free to reach out to us at [github-issue]() or kiwarilabs@protonmail.com
+For support or any inquiries, feel free to reach out to us at [github-issue](https://github.com/Kiwari-labs/) or kiwarilabs@protonmail.com
 
 ### License
 
