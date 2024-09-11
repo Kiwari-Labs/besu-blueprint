@@ -25,7 +25,7 @@ However, it still requires a currency symbol for functional representation for t
 |              | Mainnet (Validator)        | Mainnet (RPC) | Mainnet (Boot) | Testnet (Validator)        | Testnet (RPC) | Testnet (Boot) |
 | ------------ | -------------------------- | ------------- | -------------- | -------------------------- | ------------- | -------------- |
 | **CPU**      | 8 cores @ high clock speed | 4 cores       | 2 cores        | 2 cores @ high clock speed | 2 cores       | 1 core         |
-| **Memory**   | 128 GB                     | 64 GB         | 4 cores        | 4 GB                       | 2 GB          | 1 GB           |
+| **Memory**   | 128 GB                     | 64 GB         | 4 GB           | 4 GB                       | 2 GB          | 1 GB           |
 | **Storage**  | 1 TB                       | 2 TB          | 500 GB         | 100 GB                     | 250 GB        | 50 GB          |
 | **Internet** | 100 Mb/s                   | 100 Mb/s      | 100 Mb/s       | 25 Mb/s                    | 25 Mb/s       | 25 Mb/s        |
 
