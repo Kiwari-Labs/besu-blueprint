@@ -25,3 +25,7 @@ tx-pool-no-local-priority = true
 [experiment]
 Xdns-enabled = true
 Xdns-update-enabled = true
+# Xplugin-rocksdb-max-open-files
+# Xplugin-rocksdb-cache-capacity
+# Xplugin-rocksdb-background-thread-count
+# Xplugin-rocksdb-high-spec-enabled

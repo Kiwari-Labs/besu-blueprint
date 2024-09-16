@@ -1,6 +1,6 @@
 {
   "config" : {
-    "chainId" : 508,
+    "chainId" : 116776982,
     "homesteadBlock" : 0,
     "eip150Block" : 0,
     "eip155Block" : 0,
@@ -29,21 +29,6 @@
   "alloc" : {
     "0x32D5a21376C0dF3F98200a00380b06adeE341B91" : {
       "balance" : "0x33B2E3C9FD0803CE8000000"
-    },
-    "0x0000000000000000000000000000000000000776" : {
-      "comment": "committee_contract",
-      "balance" : "0x33B2E3C9FD0803CE8000000",
-      "code": "0x"
-    },
-    "0x0000000000000000000000000000000000000777" : {
-      "comment": "treasury_contract",
-      "balance" : "0x33B2E3C9FD0803CE8000000",
-      "code": "0x"
-    },
-    "0x0000000000000000000000000000000000000778" : {
-      "comment": "transaction_fee_distributor_contract",
-      "balance" : "0x33B2E3C9FD0803CE8000000",
-      "code": "0x"
     },
     "0x48055998e4f67cf2b018e67faa728cb05dcd2a31" : {
       "comment": "validator_1",
