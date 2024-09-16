@@ -58,7 +58,23 @@ However, it still requires a currency symbol for functional representation for t
 | boot       | 4           | 2       |
 | rpc        | n > 2       | 2       |
 
-The `[experiment]` section in the `config.toml` can be used to fine-tune network performance based on your specific deployment requirements.
+The `[experiment]` section in the `config.toml` can be used to fine-tune network performance based on your specific deployment requirements, see [performance troubleshooting guideline](https://besu.hyperledger.org/public-networks/how-to/troubleshoot/performance).
+
+`mainnet` performance configuration guidance based on recommendation specification.
+
+```toml
+[experiment-validator]
+Xplugin-rocksdb-max-open-files = 10240
+Xplugin-rocksdb-cache-capacity = 10737418240
+Xplugin-rocksdb-background-thread-count = 8
+Xplugin-rocksdb-high-spec-enabled = true
+
+[experiment-rpc]
+Xplugin-rocksdb-max-open-files = 8192
+Xplugin-rocksdb-cache-capacity = 5368709120
+Xplugin-rocksdb-background-thread-count = 4
+Xplugin-rocksdb-high-spec-enabled = true
+```
 
 ### Keys differentiate from other `hyperledger/besu` network
 
