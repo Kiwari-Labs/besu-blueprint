@@ -18,7 +18,7 @@
 | TOKEN_LOGO   | `none`                                 | `none`                                 |
 | NETWORK_LOGO | `none`                                 | `none`                                 |
 
-If including latency of network, other service and etc (`~3` seconds). user may wait up to `6` seconds for mainnet and `15` seconds.
+If including latency of network, other service and etc (`~3` seconds). user may wait up to `6` seconds for mainnet and `15` seconds for testnet.
 
 **`CHAIN_ID` generate form ASCII code of the `SYMBOL`**  
 **The network operates without a native token for transaction fees and is built as a zero-transaction fee system.  
