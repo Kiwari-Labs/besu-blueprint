@@ -1,5 +1,5 @@
-genesis-file="/config/genesis.json"
-data-path="/data/"
+genesis-file = "/config/genesis.json"
+data-path = "/data/"
 data-storage-format = "FOREST"
 
 rpc-http-api = ["ETH", "NET", "QBFT", "TXPOOL", "WEB3", "TRACE"]
@@ -10,7 +10,8 @@ rpc-http-port = "8545"
 rpc-ws-enabled = true
 rpc-ws-api = ["ETH", "NET", "QBFT", "TXPOOL", "WEB3", "TRACE"]
 
-miner-enabled=true
+miner-enabled = true
+min-gas-price = 0
 
 bootnodes = [
     "enode://553afe137559c4fbf5d0c7646603539755a37cf60b71a1a1574845ba4a7c822a4e422f908c2487c9b6b00dc262aafba8daa45de60bda93ba92ca25524d857eb0@bootnode1:30303",
