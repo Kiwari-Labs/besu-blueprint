@@ -82,13 +82,6 @@ Xplugin-rocksdb-high-spec-enabled = true
 🚧 Under construction and development.
 ```
 
-Transaction Validation: based from [`Consensys/permissioning-smart-contracts`](https://github.com/Consensys/permissioning-smart-contracts) but add additional capabilities.
-
-- `rootAddress` can be able to `granted` or `revoked` other role.
-- `developerAddress` can be able to `deploy` the smart contract with threshold limit and `call` to any address.
-- `serviceAddress`/`agentAddress` can be able only to `call` to `address` or `contract` that registered.
-- `clientAddress` can not able to `deploy` but can only `call` to `address` or `contract` that registered.
-
 Stateful Precompiled Contract
 
 - `LinkedListStatefulPrecompiledContract` at address `0xe2a2256098eafc2dd3b907c81d9719d4f569b6c2`
@@ -99,7 +92,6 @@ Smart Contract
 
 | Contract Name              | Mainnet Address | Testnet Address |
 | -------------------------- | --------------- | --------------- |
-| `PermissioningContract`    | `0x`            | `0x`            |
 | `AssetFactoryContract`     | `0x`            | `0x`            |
 | `CampaignFactoryContract`  | `0x`            | `0x`            |
 | `AgreementFactoryContract` | `0x`            | `0x`            |
@@ -108,7 +100,6 @@ Smart Contract
 
 source code of each smart contract
 
-- permission-contracts [repository](https://github.com/Kiwari-labs/permission-contracts)
 - token-service-contracts [repository](https://github.com/Kiwari-labs/token-service-contracts)
 - token-exchange-contracts [repository](https://github.com/Kiwari-labs/token-exchagne-contracts)
 
