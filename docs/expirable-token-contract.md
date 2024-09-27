@@ -1,65 +1,59 @@
 ---
-title: Expirable Token Contract
-description: An expirable extension for making expirable fungible tokens.
+title: ERC20-Expirable A Fungible Token Standard with Expiration Feature
+description: An extension of the ERC20 standard that enables the creation of fungible tokens with configurable expiration features, allowing for time-sensitive use cases.
 author: sirawt (@MASDXI), ADISAKBOONMARK (@ADISAKBOONMARK)
 status: Draft
 ---
 
 ## Simple Summary
 
-An expiration token extension standard interface for ERC20 tokens
+A standard interface enables ERC20 tokens to possess expiration capabilities, allowing them to expire after a predetermined period of time.
 
 ## Abstract
 
-This extension standard provides an expiration feature.
+This standard introduces an extension for `ERC20` tokens, which facilitates the implementation of an expiration mechanism. Through this extension, tokens are designated a predetermined validity period, following which they become void and are no longer transferable or usable. This functionality proves beneficial in scenarios such as time-limited bond, loyalty reward , or game token necessitating automatic invalidation after a specific duration. The extension is meticulously crafted to seamlessly align with the existing `ERC20` standard, ensuring smooth integration with prevailing token contracts, while concurrently introducing the capability to govern and enforce token expiration at the contract level.
 
 ## Motivation
 
-An extension standard allows to create of tokens with expiration dates like loyalty that are backward compatible with the ERC20 interface.
+This extension standard facilitates the development of `ERC20` standard compatible tokens featuring expiration dates. This capability broadens the scope of potential applications, particularly those involving time-sensitive assets. Expirable tokens are well-suited for scenarios necessitating temporary validity, including:
+
+- Bonds or financial instruments with defined maturity dates
+- Time-constrained assets within gaming ecosystems
+- Next-generation loyalty programs incorporating expiring rewards or points
 
 ## Specification
 
-Creating fungible tokens that have abilities to expire like loyalty rewards is
-a challenge due to the limitation of the smart contract concept that every block has a block gas limit how to prevent the transaction of the contract hits the block gas limit while compatible with the existing ERC20 standard interface.
-`ERC1400` and `ERC3643` both are large.
-
 ## Rationale
-
-##### Requirement:
-
-- [x] Compatible with existing ERC20 standard.
-- [x] Configurable expiration period can be change.
-- [x] Configurable block period (blocktime) can be changed.
-- [x] Auto select nearly expiration token when transfer as default (FIFO).
-- [x] Extensible design to fit the business use case.
+The rationale for developing an expirable `ERC20` token extension is based on several key requirements that ensure its practicality and adaptability for various applications:
+- Compatibility with Existing `ERC20` Standard: The extension must seamlessly integrate with the established `ERC20` interface, allowing for easy adoption and interoperability with existing token ecosystems.  
+- Configurable Expiration Period: Users should have the flexibility to define and modify the expiration period of tokens according to their business needs, enabling dynamic reward systems or time-sensitive applications.  
+- Configurable Block Period (Blocktime): The system should allow for adjustments to the block period, ensuring that expiration calculations remain relevant as network conditions and transaction speeds evolve.  
+- Automatic Selection of Nearly Expired Tokens (`FIFO`): When transferring tokens, the mechanism should prioritize the selection of tokens approaching their expiration date, following a First-In-First-Out (`FIFO`) approach. This ensures that users are incentivize to utilize their tokens before they expire.  
+- Extensible Design for Business Use Cases: The architecture should be extensible, enabling businesses to tailor the expiration functionality to their specific use cases.
 
 ##### Era and Slot Conceptual
 
 This contract creates an abstract implementation that adopts the sliding window algorithm to maintain a window over a period of time (block height). This efficient approach allows for the look back and calculation of usable balances for each account within that window period. With this approach, the contract does not require a variable acting as a "counter" to keep updating the latest state (current period), nor does it need any interaction calls to keep updating the current period, which is an effortful and costly design.
 
-```markdown
 ExpirePeriod to ERA-SLOT Mapping.
-┌─────────┬──────────────────────────┐
-│ SLOT │ ERA cycle │
-├─────────┼──────────────────────────┤
-│ 1 │ 0 ERA cycle, 1 SLOT │
-│ 2 │ 0 ERA cycle, 2 SLOT │
-│ 3 │ 0 ERA cycle, 3 SLOT │
-│ 4 │ 1 ERA cycle, 0 SLOT │
-│ 5 │ 1 ERA cycle, 1 SLOT │
-│ 6 │ 1 ERA cycle, 2 SLOT │
-│ 7 │ 1 ERA cycle, 3 SLOT │
-│ 8 │ 2 ERA cycle, 0 SLOT │
-│ 9 │ 2 ERA cycle, 1 SLOT │
-│ 10 │ 2 ERA cycle, 2 SLOT │
-│ 11 │ 2 ERA cycle, 3 SLOT │
-│ 12 │ 3 ERA cycle, 0 SLOT │
-│ 13 │ 3 ERA cycle, 1 SLOT │
-│ 14 │ 3 ERA cycle, 2 SLOT │
-│ 15 │ 3 ERA cycle, 3 SLOT │
-│ 16 │ 4 ERA cycle, 0 SLOT │
-└─────────┴──────────────────────────┘
-```
+| SLOT | ERA cycle |
+|------|-----------------------|
+| 1 | 0 ERA cycle, 1 SLOT |
+| 2 | 0 ERA cycle, 2 SLOT |
+| 3 | 0 ERA cycle, 3 SLOT |
+| 4 | 1 ERA cycle, 0 SLOT |
+| 5 | 1 ERA cycle, 1 SLOT |
+| 6 | 1 ERA cycle, 2 SLOT |
+| 7 | 1 ERA cycle, 3 SLOT |
+| 8 | 2 ERA cycle, 0 SLOT |
+| 9 | 2 ERA cycle, 1 SLOT |
+| 10 | 2 ERA cycle, 2 SLOT |
+| 11 | 2 ERA cycle, 3 SLOT |
+| 12 | 3 ERA cycle, 0 SLOT |
+| 13 | 3 ERA cycle, 1 SLOT |
+| 14 | 3 ERA cycle, 2 SLOT |
+| 15 | 3 ERA cycle, 3 SLOT |
+| 16 | 4 ERA cycle, 0 SLOT |
 
 ##### Vertical and Horizontal Scaling
 
@@ -114,6 +108,15 @@ Assuming each era contains 4 slots.
 | 5000 | 86,400,000 | 18 | 1 | Very Likely |
 | 10000 | 86,400,000 | 9 | 1 | Very Likely |
 
+## Security Considerations
+
+- [SC06:2023Vulnerability: Denial Of Service](https://owasp.org/www-project-smart-contract-top-10/2023/en/src/SC06-denial-of-service-attacks.html)Run out of gas problem due to the operation consuming high gas used if transferring multiple groups of small tokens [dust](https://www.investopedia.com/terms/b/bitcoin-dust.asp) transaction.
+- [SC09:2023-Gas Limit Vulnerabilities](https://owasp.org/www-project-smart-contract-top-10/2023/en/src/SC09-gas-limit-vulnerabilities.html) Exceeds block gas limit if the blockchain have block gas limit lower than the gas used of the transaction.
+- The accumulation of tokens and associated data can lead to state bloat, significantly increasing the database size and affecting overall performance.
+
+## History
+Historical links related to this standard:
+
 #### Appendix
 
 `Era` definition is a Similar idea for a page in pagination.
@@ -123,9 +126,3 @@ Assuming each era contains 4 slots.
 `Slot` definition is Similar to the idea of the index on each page of pagination.  
 \*\* The first index of the slot is 0
 
-## Security Considerations
-
-- Run out of gas problem due to the operation consuming high gas used if transferring multiple groups of small tokens.
-- Exceeds block gas limit if the blockchain have block gas limit lower than the gas used of the transaction.
-- Need to be avoiding to create a [dust](https://www.investopedia.com/terms/b/bitcoin-dust.asp) transaction from actions transfer, minting and burning.
-- State bloat growth the database size.
