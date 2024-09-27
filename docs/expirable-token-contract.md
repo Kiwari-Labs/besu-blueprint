@@ -24,11 +24,13 @@ This extension standard facilitates the development of `ERC20` standard compatib
 ## Specification
 
 ## Rationale
+
 The rationale for developing an expirable `ERC20` token extension is based on several key requirements that ensure its practicality and adaptability for various applications:
-- Compatibility with Existing `ERC20` Standard: The extension must seamlessly integrate with the established `ERC20` interface, allowing for easy adoption and interoperability with existing token ecosystems.  
-- Configurable Expiration Period: Users should have the flexibility to define and modify the expiration period of tokens according to their business needs, enabling dynamic reward systems or time-sensitive applications.  
-- Configurable Block Period (Blocktime): The system should allow for adjustments to the block period, ensuring that expiration calculations remain relevant as network conditions and transaction speeds evolve.  
-- Automatic Selection of Nearly Expired Tokens (`FIFO`): When transferring tokens, the mechanism should prioritize the selection of tokens approaching their expiration date, following a First-In-First-Out (`FIFO`) approach. This ensures that users are incentivize to utilize their tokens before they expire.  
+
+- Compatibility with Existing `ERC20` Standard: The extension must seamlessly integrate with the established `ERC20` interface, allowing for easy adoption and interoperability with existing token ecosystems.
+- Configurable Expiration Period: Users should have the flexibility to define and modify the expiration period of tokens according to their business needs, enabling dynamic reward systems or time-sensitive applications.
+- Configurable Block Period (Blocktime): The system should allow for adjustments to the block period, ensuring that expiration calculations remain relevant as network conditions and transaction speeds evolve.
+- Automatic Selection of Nearly Expired Tokens (`FIFO`): When transferring tokens, the mechanism should prioritize the selection of tokens approaching their expiration date, following a First-In-First-Out (`FIFO`) approach. This ensures that users are incentivize to utilize their tokens before they expire.
 - Extensible Design for Business Use Cases: The architecture should be extensible, enabling businesses to tailor the expiration functionality to their specific use cases.
 
 ##### Era and Slot Conceptual
@@ -114,7 +116,15 @@ Assuming each era contains 4 slots.
 - [SC09:2023-Gas Limit Vulnerabilities](https://owasp.org/www-project-smart-contract-top-10/2023/en/src/SC09-gas-limit-vulnerabilities.html) Exceeds block gas limit if the blockchain have block gas limit lower than the gas used of the transaction.
 - The accumulation of tokens and associated data can lead to state bloat, significantly increasing the database size and affecting overall performance.
 
+## Mitigating Performance Bottlenecks
+
+- Implementing a stateful precompiled contract to efficiently manage complex data structures, such as a circular doubly linked list, can significantly enhance performance on large dataset and reduce gas consumption.
+- Adopting `blake2b` or `blake3` for calculating storage slots in stateful precompiled contracts, as opposed to using `keccak256`, can improve efficiency and speed.
+- Increasing `blockGasLimit` to reducing the likelihood of transaction failures due to gas constraints.
+- Optimizing the blockchain client configuration can significantly enhance throughput, aiming for gigagas per second (`Ggas/s`) processing capabilities.
+
 ## History
+
 Historical links related to this standard:
 
 #### Appendix
@@ -125,4 +135,3 @@ Historical links related to this standard:
 
 `Slot` definition is Similar to the idea of the index on each page of pagination.  
 \*\* The first index of the slot is 0
-
