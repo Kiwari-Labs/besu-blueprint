@@ -21,45 +21,30 @@ This extension standard facilitates the development of `ERC20` standard compatib
 - Time-constrained assets within gaming ecosystems
 - Next-generation loyalty programs incorporating expiring rewards or points
 
-## Specification
-
 ## Rationale
 
-The rationale for developing an expirable `ERC20` token extension is based on several key requirements that ensure its practicality and adaptability for various applications:
+The rationale for developing an expirable `ERC20` token extension is based on several key requirements that ensure its practicality and adaptability for various applications
 
-- Compatibility with Existing `ERC20` Standard: The extension must seamlessly integrate with the established `ERC20` interface, allowing for easy adoption and interoperability with existing token ecosystems.
-- Configurable Expiration Period: Users should have the flexibility to define and modify the expiration period of tokens according to their business needs, enabling dynamic reward systems or time-sensitive applications.
-- Configurable Block Period (Blocktime): The system should allow for adjustments to the block period, ensuring that expiration calculations remain relevant as network conditions and transaction speeds evolve.
-- Automatic Selection of Nearly Expired Tokens (`FIFO`): When transferring tokens, the mechanism should prioritize the selection of tokens approaching their expiration date, following a First-In-First-Out (`FIFO`) approach. This ensures that users are incentivize to utilize their tokens before they expire.
-- Extensible Design for Business Use Cases: The architecture should be extensible, enabling businesses to tailor the expiration functionality to their specific use cases.
+- Compatibility with the existing `ERC20` standard. The extension must seamlessly integrate with the established `ERC20` interface, ensuring easy adoption and interoperability within existing token ecosystems. This includes full compatibility with third-party tools, such as wallets and blockchain explorers.
+- Flexible design for business use cases. The smart contract should be extensible, allowing businesses to tailor the expiration functionality to their specific needs, whether it’s dynamic reward systems or time-sensitive applications.
+- Configurable expiration period. After deployment, users should have the flexibility to define and modify the expiration period of tokens according to their business requirements, supporting various use cases.
+- Configurable block time after network upgrades. Following a blockchain network upgrade, block times may fluctuate upward or downward. The smart contract must support configurable block times to allow dynamic adjustments to the block times, ensuring expiration calculations remain accurate as transaction speeds evolve.
+Automatic selection of nearly expired tokens, When transferring tokens, the system should prioritize tokens that are approaching their expiration date, following a First-In-First-Out (`FIFO`) approach. This mechanism encourages users to utilize their tokens before they expire.
+- Effortless on state management, The contract’s design minimizes the need for operation `WRITE` frequent on-chain state maintenance. By reducing reliance on off-chain indexing or caching, the system optimizes infrastructure usage and ensures streamlined performance without unnecessary dependencies. This design reduces operational overhead while keeping state securely maintained within the chain.
+- Resilient Architecture:  The contract architecture is built for robustness, supporting `EVM` types `1`, `2`, and `2.5`, and remains fully operational on Layer 2 solutions with sub-second block times. By anchoring operations to `block.number`, the system ensures asset integrity and continuity, even during prolonged network outages, safeguarding against potential asset loss.
 
-##### Era and Slot Conceptual
+## Specification
+
+
+#### Era and Slot Conceptual
 
 This contract creates an abstract implementation that adopts the sliding window algorithm to maintain a window over a period of time (block height). This efficient approach allows for the look back and calculation of usable balances for each account within that window period. With this approach, the contract does not require a variable acting as a "counter" to keep updating the latest state (current period), nor does it need any interaction calls to keep updating the current period, which is an effortful and costly design.
 
-ExpirePeriod to ERA-SLOT Mapping.
-| SLOT | ERA cycle |
-|------|-----------------------|
-| 1 | 0 ERA cycle, 1 SLOT |
-| 2 | 0 ERA cycle, 2 SLOT |
-| 3 | 0 ERA cycle, 3 SLOT |
-| 4 | 1 ERA cycle, 0 SLOT |
-| 5 | 1 ERA cycle, 1 SLOT |
-| 6 | 1 ERA cycle, 2 SLOT |
-| 7 | 1 ERA cycle, 3 SLOT |
-| 8 | 2 ERA cycle, 0 SLOT |
-| 9 | 2 ERA cycle, 1 SLOT |
-| 10 | 2 ERA cycle, 2 SLOT |
-| 11 | 2 ERA cycle, 3 SLOT |
-| 12 | 3 ERA cycle, 0 SLOT |
-| 13 | 3 ERA cycle, 1 SLOT |
-| 14 | 3 ERA cycle, 2 SLOT |
-| 15 | 3 ERA cycle, 3 SLOT |
-| 16 | 4 ERA cycle, 0 SLOT |
 
-##### Vertical and Horizontal Scaling
-
+#### Storing data in vertical and horizontal way
 ```solidity
+    // ... skipping
+
     struct Slot {
         uint256 slotBalance;
         mapping(uint256 => uint256) blockBalances;
@@ -69,11 +54,12 @@ ExpirePeriod to ERA-SLOT Mapping.
     //... skipping
 
     mapping(address => mapping(uint256 => mapping(uint8 => Slot))) private _balances;
+    mapping(uint256 => uint256) private _worldBlockBalance;
 ```
 
 With this struct `Slot` it provides an abstract loop in a horizontal way more efficient for calculating the usable balance of the account because it provides `slotBalance` which acts as suffix balance so you don't need to get to iterate or traversal over the `list` for each `Slot` to calculate the entire slot balance if the slot can presume not to expire. otherwise struct `Slot` also provides vertical in a sorted list.
 
-##### Buffer Slot
+#### Ensure Safety with Buffer Slot
 
 In the design sliding window algorithm needs to be coarse because it's deterministic and fixed in size to ensure that a usable balance that nearly expires will be included in the usable balance of the account it's needs to buffered one slot.
 
@@ -109,14 +95,17 @@ Assuming each era contains 4 slots.
 | 1000 | 86,400,000 | 91 | 1 | Possible |
 | 5000 | 86,400,000 | 18 | 1 | Very Likely |
 | 10000 | 86,400,000 | 9 | 1 | Very Likely |
+Note:
+- Transactions per day are assumed based on loyalty point earnings.
+- Likelihood varies depending on the use case; for instance, gaming use cases may have higher transaction volumes than the given estimates.
 
 ## Security Considerations
 
-- [SC06:2023-Denial Of Service](https://owasp.org/www-project-smart-contract-top-10/2023/en/src/SC06-denial-of-service-attacks.html)Run out of gas problem due to the operation consuming high gas used if transferring multiple groups of small tokens [dust](https://www.investopedia.com/terms/b/bitcoin-dust.asp) transaction.
+- [SC06:2023-Denial Of Service](https://owasp.org/www-project-smart-contract-top-10/2023/en/src/SC06-denial-of-service-attacks.html) Run out of gas problem due to the operation consuming high gas used if transferring multiple groups of small tokens [dust](https://www.investopedia.com/terms/b/bitcoin-dust.asp) transaction.
 - [SC09:2023-Gas Limit Vulnerabilities](https://owasp.org/www-project-smart-contract-top-10/2023/en/src/SC09-gas-limit-vulnerabilities.html) Exceeds block gas limit if the blockchain have block gas limit lower than the gas used of the transaction.
 - The accumulation of tokens and associated data can lead to state bloat, significantly increasing the database size and affecting overall performance.
 
-## Mitigating Performance Bottlenecks
+## Mitigating Performance Bottlenecks and Security Concern
 
 - Implementing a stateful precompiled contract to efficiently manage complex data structures, such as a circular doubly linked list, can significantly enhance performance on large dataset and reduce gas consumption.
 - Adopting `blake2b` or `blake3` for calculating storage slots in stateful precompiled contracts, as opposed to using `keccak256`, can improve efficiency and speed.
@@ -125,13 +114,17 @@ Assuming each era contains 4 slots.
 
 ## History
 
-Historical links related to this standard:
+Historical links related to this standard:  
+- Implemtatation of [erc20-utxo](https://sirawt.medium.com/erc20exp-da3904e912b2)
+- Implementation of [erc20-demurrage-token](https://gitlab.com/cicnet/erc20-demurrage-token)
+- ethereum stack exchange question [#27379](https://ethereum.stackexchange.com/questions/27379/is-it-possible-to-create-an-expiring-ephemeral-erc-20-token)  
+- ethereum stack exchange question [#63937](https://ethereum.stackexchange.com/questions/63937/erc20-token-with-expiration-date)
 
 #### Appendix
 
 `Era` definition is a Similar idea for a page in pagination.
 
-`FIFO` definition First In First Out.
+`FIFO` definition First-In-First-Out.
 
 `Slot` definition is Similar to the idea of the index on each page of pagination.  
 \*\* The first index of the slot is 0
