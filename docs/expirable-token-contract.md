@@ -22,10 +22,9 @@ This extension standard facilitates the development of `ERC20` standard compatib
 - Bonds or financial instruments with defined maturity dates
 - Time-constrained assets within gaming ecosystems
 - Next-gen loyalty programs incorporating expiring rewards or points
-- Prepaid credits for utilities or services (e.g., cashback, data packages, fuel, computing  resources) that expire if not used within a specified timeframe
+- Prepaid credits for utilities or services (e.g., cashback, data packages, fuel, computing resources) that expire if not used within a specified timeframe
 - Postpaid telecom data package allocations that expire at the end of the billing cycle, motivating users to utilize their data before it resets
 - Tokenized e-Money for a closed-loop ecosystem, such as transportation, food court, and retail payments
-
 
 ## Rationale
 
@@ -35,19 +34,18 @@ The rationale for developing an expirable `ERC20` token extension is based on se
 - Flexible design for business use cases. The smart contract should be extensible, allowing businesses to tailor the expiration functionality to their specific needs, whether it’s dynamic reward systems or time-sensitive applications.
 - Configurable expiration period. After deployment, users should have the flexibility to define and modify the expiration period of tokens according to their business requirements, supporting various use cases.
 - Configurable block time after network upgrades. Following a blockchain network upgrade, block times may fluctuate upward or downward. The smart contract must support configurable block times to allow dynamic adjustments to the block times, ensuring expiration calculations remain accurate as transaction speeds evolve.
-Automatic selection of nearly expired tokens, When transferring tokens, the system should prioritize tokens that are approaching their expiration date, following a First-In-First-Out (`FIFO`) approach. This mechanism encourages users to utilize their tokens before they expire.
+  Automatic selection of nearly expired tokens, When transferring tokens, the system should prioritize tokens that are approaching their expiration date, following a First-In-First-Out (`FIFO`) approach. This mechanism encourages users to utilize their tokens before they expire.
 - Effortless on state management, The contract’s design minimizes the need for operation `WRITE` frequent on-chain state maintenance. By reducing reliance on off-chain indexing or caching, the system optimizes infrastructure usage and ensures streamlined performance without unnecessary dependencies. This design reduces operational overhead while keeping state securely maintained within the chain.
 - Resilient Architecture:  The contract architecture is built for robustness, supporting `EVM` types `1`, `2`, and `2.5`, and remains fully operational on Layer 2 solutions with sub-second block times. By anchoring operations to `block.number`, the system ensures asset integrity and continuity, even during prolonged network outages, safeguarding against potential asset loss.
 
 ## Specification
 
-
 #### Era and Slot Conceptual
 
 This contract creates an abstract implementation that adopts the sliding window algorithm to maintain a window over a period of time (block height). This efficient approach allows for the look back and calculation of usable balances for each account within that window period. With this approach, the contract does not require a variable acting as a "counter" to keep updating the latest state (current period), nor does it need any interaction calls to keep updating the current period, which is an effortful and costly design.
 
-
 #### Storing data in vertical and horizontal way
+
 ```solidity
     // ... skipping
 
@@ -74,23 +72,6 @@ In the design sliding window algorithm needs to be coarse because it's determini
 - [ ] This contract relies on `block.number` rather than `block.timestamp` so whatever happens that makes the network halt asset will be safe.
 - [ ] This contract can have a scenario where the expiration block is shorter than the actual true expiration block, due to the `blockPerYear` and `blockPerSlot * slotPerEra` output from calculate can be different.
 
-```text
-    /* @note Motivation
-    * Avoid changing ERC20 Interface Standard, support most ERC20 Interface Standard as much as possible.
-    * Avoid declaring ERA or SLOT as a global variable and maintain the counter style as much as possible.
-    * support configurable expiration period change.
-    * support configurable blocks produce per year of the network are change.
-    * support extensible hook logic beforeTransfer, AfterTransfer if use @openzeppelin v4.x and above.
-    * smart contract address can be granted as a wholesale account so tokens in the contract are non-expirable.
-    * ** To ensure balance correctness it's need to buffer 1 slot for look back.
-    * ** Warning: avoid to combine this contract with other ERC20 extension,
-    *    due it's can cause unexpected behavior.
-    * ** Warning: this relies on block.number more than the block.timestamp
-    *    in some scenarios expiration blocks are shortened than the actual true expiration block
-    *
-    */
-```
-
 Assuming each era contains 4 slots.
 | Block Time (ms) | Receive Token Every (ms) | index/slot | tx/day | Likelihood |
 |-----------------|--------------------------|-------------------------|--------|--------------|
@@ -101,7 +82,9 @@ Assuming each era contains 4 slots.
 | 1000 | 86,400,000 | 91 | 1 | Possible |
 | 5000 | 86,400,000 | 18 | 1 | Very Likely |
 | 10000 | 86,400,000 | 9 | 1 | Very Likely |
+
 Note:
+
 - Transactions per day are assumed based on loyalty point earnings.
 - Likelihood varies depending on the use case; for instance, gaming use cases may have higher transaction volumes than the given estimates.
 
@@ -120,17 +103,17 @@ Note:
 
 ## History
 
-Historical links related to this standard:  
+Historical links related to this standard:
+
 - Implemtatation of [erc20-utxo](https://sirawt.medium.com/erc20exp-da3904e912b2)
 - Implementation of [erc20-demurrage-token](https://github.com/nolash/erc20-demurrage-token)
-- ethereum stack exchange question [#27379](https://ethereum.stackexchange.com/questions/27379/is-it-possible-to-create-an-expiring-ephemeral-erc-20-token)  
+- ethereum stack exchange question [#27379](https://ethereum.stackexchange.com/questions/27379/is-it-possible-to-create-an-expiring-ephemeral-erc-20-token)
 - ethereum stack exchange question [#63937](https://ethereum.stackexchange.com/questions/63937/erc20-token-with-expiration-date)
 
 #### Appendix
 
+`e-Money` definition electronic money.  
 `Era` definition is a Similar idea for a page in pagination.
-
-`FIFO` definition First-In-First-Out.
-
+`FIFO` definition First-In-First-Out.  
 `Slot` definition is Similar to the idea of the index on each page of pagination.  
 \*\* The first index of the slot is 0
