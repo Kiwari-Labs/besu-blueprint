@@ -1,22 +1,22 @@
-# Merit Network
+# WangJai
 
-[Merit](https://meritnet.io) is a DLT-based Loyalty Platform that use [hyperledger/besu](https://github.com/hyperledger/besu)
+[WangJai](https://wangjai.io) is a DLT-based Loyalty Platform that use [hyperledger/besu](https://github.com/hyperledger/besu)
 
 ### Network Parameter and Configuration
 
 `mainnet` is stand for production.  
 `testnet` is stand develop and staging.
 
-| Parameter    | Mainnet                                | Testnet                                |
-| ------------ | -------------------------------------- | -------------------------------------- |
-| NETWORK_NAME | `Merit`                                | `Merit Testnet`                        |
-| CHAIN_ID     | `776982`                               | `116776982`                            |
-| SYMBOL       | `MER`                                  | `tMER`                                 |
-| RPC_URL      | `https://meritnet.rpc.mainnet.io`      | `https://meritnet.rpc.testnet.io`      |
-| EXPLORER_URL | `https://meritnet.explorer.mainnet.io` | `https://meritnet.explorer.testnet.io` |
-| BLOCK_PERIOD | `3` second                             | `12` seconds                           |
-| TOKEN_LOGO   | `none`                                 | `none`                                 |
-| NETWORK_LOGO | `none`                                 | `none`                                 |
+| Parameter    | Mainnet                               | Testnet                               |
+| ------------ | ------------------------------------- | ------------------------------------- |
+| NETWORK_NAME | `WangJai`                             | `WangJai Testnet`                     |
+| CHAIN_ID     | `87746573`                            | `11687746573`                         |
+| SYMBOL       | `WJAI`                                | `tWJAI`                               |
+| RPC_URL      | `https://wangjai.rpc.mainnet.io`      | `https://wangjai.rpc.testnet.io`      |
+| EXPLORER_URL | `https://wangjai.explorer.mainnet.io` | `https://wangjai.explorer.testnet.io` |
+| BLOCK_PERIOD | `3` second                            | `12` seconds                          |
+| TOKEN_LOGO   | `none`                                | `none`                                |
+| NETWORK_LOGO | `none`                                | `none`                                |
 
 If including latency of network, other service and etc (`~3` seconds). user may wait up to `6` seconds for mainnet and `15` seconds for testnet.
 
