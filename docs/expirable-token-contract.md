@@ -105,7 +105,7 @@ Note:
 
 Historical links related to this standard:
 
-- Implemtatation of [erc20-utxo](https://sirawt.medium.com/erc20exp-da3904e912b2)
+- Implementation of [erc20-utxo](https://sirawt.medium.com/erc20exp-da3904e912b2)
 - Implementation of [erc20-demurrage-token](https://github.com/nolash/erc20-demurrage-token)
 - ethereum stack exchange question [#27379](https://ethereum.stackexchange.com/questions/27379/is-it-possible-to-create-an-expiring-ephemeral-erc-20-token)
 - ethereum stack exchange question [#63937](https://ethereum.stackexchange.com/questions/63937/erc20-token-with-expiration-date)
