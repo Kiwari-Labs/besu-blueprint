@@ -97,7 +97,7 @@ Note:
 
 ## Mitigating Performance Bottlenecks and Security Concern
 
-- Implementing a function to change or adjusting blocktime to match with certain blocktime of the network
+- Implementing a function to change or adjust blocktime to match with certain blocktime of the network.
 - Implementing a stateful precompiled contract to efficiently manage complex data structures, such as a circular doubly linked list, can significantly enhance performance on large dataset and reduce gas consumption.
 - Adopting `blake2b` or `blake3` for calculating storage slots in stateful precompiled contracts, as opposed to using `keccak256`, can improve efficiency and speed.
 - Increasing `blockGasLimit` to reducing the likelihood of transaction failures due to gas constraints.
