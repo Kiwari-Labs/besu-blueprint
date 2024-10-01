@@ -21,3 +21,4 @@ status: Draft
 
 ## Security Considerations
 - [SWC124:Write to Arbitrary Storage Location](https://swcregistry.io/docs/SWC-124/) Using an alternate hash function instead of keccak256 for storage slot calculations could potentially expose vulnerabilities, such as writing to arbitrary storage locations, Ensuring the integrity and collision resistance of the hash function is critical for preventing unintended overwriting or access to storage areas
+- 
