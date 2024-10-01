@@ -92,11 +92,12 @@ Note:
 
 - [SC06:2023-Denial Of Service](https://owasp.org/www-project-smart-contract-top-10/2023/en/src/SC06-denial-of-service-attacks.html) Run out of gas problem due to the operation consuming high gas used if transferring multiple groups of small tokens [dust](https://www.investopedia.com/terms/b/bitcoin-dust.asp) transaction.
 - [SC09:2023-Gas Limit Vulnerabilities](https://owasp.org/www-project-smart-contract-top-10/2023/en/src/SC09-gas-limit-vulnerabilities.html) Exceeds block gas limit if the blockchain have block gas limit lower than the gas used of the transaction.
-- [SWC116:Block values as a proxy for time](https://swcregistry.io/docs/SWC-116/) and [avoid using `block.number` as a timestamp](https://consensys.github.io/smart-contract-best-practices/development-recommendations/solidity-specific/timestamp-dependence/#avoid-using-blocknumber-as-a-timestamp) mention about the block time of network can be change.
+- [SWC116:Block values as a proxy for time](https://swcregistry.io/docs/SWC-116/) and [avoid using `block.number` as a timestamp](https://consensys.github.io/smart-contract-best-practices/development-recommendations/solidity-specific/timestamp-dependence/#avoid-using-blocknumber-as-a-timestamp) Emphasize that network block times can fluctuate. In networks with variable block times, contracts relying on block values for time-based operations may not behave as expected. This can lead to inaccurate calculations or unintended outcomes.
 - The accumulation of tokens and associated data can lead to state bloat, significantly increasing the database size and affecting overall performance.
 
 ## Mitigating Performance Bottlenecks and Security Concern
 
+- Implementing a function to change or adjusting blocktime to match with certain blocktime of the network
 - Implementing a stateful precompiled contract to efficiently manage complex data structures, such as a circular doubly linked list, can significantly enhance performance on large dataset and reduce gas consumption.
 - Adopting `blake2b` or `blake3` for calculating storage slots in stateful precompiled contracts, as opposed to using `keccak256`, can improve efficiency and speed.
 - Increasing `blockGasLimit` to reducing the likelihood of transaction failures due to gas constraints.
