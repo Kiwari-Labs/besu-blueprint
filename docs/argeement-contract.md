@@ -20,6 +20,6 @@ status: Draft
 
 - Multi-signature 
 
-#### Appendix
-
 ## Security Considerations
+---
+#### Appendix
