@@ -15,7 +15,7 @@ This standard introduces an extension for `ERC20` tokens, which facilitates the 
 
 ## Motivation
 
-> Why settle for security-backed tokenization of old bricks and mortar when you can mint digital assets representing real-world intangibles?, Real estate may have a location, but data knows no boundaries.
+> Why limit yourself to tangible assets when tokenization empowers you to formalize the intangible? Transform loyalty points, credit scores, and time into secure digital assets that hold genuine value, redefining ownership and unlocking limitless opportunities.
 
 This extension standard facilitates the development of `ERC20` standard compatible tokens featuring expiration dates. This capability broadens the scope of potential applications, particularly those involving time-sensitive assets. Expirable tokens are well-suited for scenarios necessitating temporary validity, including:
 
