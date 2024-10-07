@@ -36,7 +36,7 @@ The rationale for developing an expirable `ERC20` token extension is based on se
 - Configurable block time after network upgrades. Following a blockchain network upgrade, block times may fluctuate upward or downward. The smart contract must support configurable block times to allow dynamic adjustments to the block times, ensuring expiration calculations remain accurate as transaction speeds evolve.
 - Automatic selection of nearly expired tokens, When transferring tokens, the system should prioritize tokens that are approaching their expiration date, following a First-In-First-Out (`FIFO`) approach. This mechanism encourages users to utilize their tokens before they expire. Datat structure that suitable is `List` and `Queue`.
 - Effortless on state management, The contract’s design minimizes the need for operation `WRITE` or `UPDATE` frequent on-chain state maintenance. By reducing reliance on off-chain indexing or caching, the system optimizes infrastructure usage and ensures streamlined performance without unnecessary dependencies. This design reduces operational overhead while keeping state securely maintained within the chain.
-- Resilient Architecture:  The contract architecture is built for robustness, supporting `EVM` types `1`, `2`, and `2.5`, and remains fully operational on Layer 2 solutions with sub-second block times. By anchoring operations to `block.number`, the system ensures asset integrity and continuity, even during prolonged network outages, safeguarding against potential asset loss. see more detail in [taiko article on EVM Types](https://taiko.mirror.xyz/j6KgY8zbGTlTnHRFGW6ZLVPuT0IV0_KmgowgStpA0K4)
+- Resilient Architecture, The contract architecture is built for robustness, supporting `EVM` types `1`, `2`, and `2.5`, and remains fully operational on Layer 2 solutions with sub-second block times. By anchoring operations to `block.number`, the system ensures asset integrity and continuity, even during prolonged network outages, safeguarding against potential asset loss. see more detail in [taiko article on EVM Types](https://taiko.mirror.xyz/j6KgY8zbGTlTnHRFGW6ZLVPuT0IV0_KmgowgStpA0K4)
 
 ## Design and Technique
 
@@ -73,12 +73,12 @@ In this design, the buffering slot is the critical element that requires careful
 ```solidity
 function tokenList(address account,uint256 era,uint8 slot) external view returns (uint256[] memory list);
 ```
-- Purpose: This function retrieves a list of token balances associated with a specific account, within a given era and slot.
+- Purpose: This function retrieves a list of token associated with a specific account, within a given era and slot.
 - Parameters:
 account: The address of the account whose token balances are being queried.
   - `era`: Refers to a specific time period or epoch in which the tokens are held.
   - `slot`: A subdivision of the era, representing finer divisions of time or state.
-- Returns: An array of token balances corresponding to the specified era and slot.
+- Returns: An array list of token corresponding to the specified era and slot.
 solidity
 Copy 
 
