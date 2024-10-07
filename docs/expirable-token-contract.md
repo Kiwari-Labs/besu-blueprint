@@ -68,6 +68,11 @@ The `_worldBlockBalance` mapping tracks the total token balance across all accou
 
 In this design, the buffering slot is the critical element that requires careful calculation to ensure accurate handling of balances nearing expiration. By incorporating this buffer, the contract guarantees that any expiring balance is correctly accounted for within the sliding window mechanism, ensuring reliability and preventing premature expiration or missed balances.
 
+#### First-In-First-Out (FIFO) priority to enforce token expiration rules
+
+Enforcing `FIFO` priority ensures that tokens nearing expiration are processed before newer ones, aligning with the token lifecycle and expiration rules. This method eliminates the need for additional off-chain computation and ensures that all token processing occurs efficiently on-chain, fully compliant with the ERC20 interface.
+A **sorted** list is integral to this approach. Each slot maintains its own list, sorted by token creation which is can be `block.timestamp` or `blocknumber`, preventing any overlap with other slots. This separation ensures that tokens in one slot do not interfere with the balance handling in another. The contract can then independently manage token expirations within each slot, minimizing computation while maintaining accuracy and predictability in processing balances.
+
 ## Interfaces
 
 ```solidity
@@ -156,7 +161,7 @@ Assuming each `Era` contains 4 `slots`, which aligns with familiar time-based di
 
 ---
 
-#### Historical links related to this standard:
+#### Historical links related to this standard
 
 - Implementation of [erc20-utxo](https://sirawt.medium.com/erc20exp-da3904e912b2)
 - Implementation of [erc20-demurrage-token](https://github.com/nolash/erc20-demurrage-token)
