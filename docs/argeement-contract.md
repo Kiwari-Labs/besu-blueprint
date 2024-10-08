@@ -1,6 +1,6 @@
 ---
-title: Argeement Contract
-description: A smart contract agreements between multiple parties.
+title: Programmable agreement contract standard
+description: A smart contract standard for create agreements between multiple parties.
 author: sirawt (@MASDXI)
 status: Draft
 ---
@@ -14,12 +14,18 @@ status: Draft
 - Bilateral Agreement
 - Multilateral Agreement
 
-## Specification
-
 ## Rationale
 
 - Multi-signature 
 
+## Interface
+
 ## Security Considerations
 ---
+#### Historical links related to this standard
+
 #### Appendix
+
+## License
+Release under the [MIT] license.   
+Copyright (C) to author. All rights reserved.
