@@ -29,14 +29,26 @@ status: Draft
 
 ## Interface
 
-## Security Considerations
+``` solidity
+function name() public returns (bool);
+```
 
+``` solidity
+function version() public returns (bool);
+```
+
+``` solidity
+function agreement() public returns (bool);
+```
+
+## Security Considerations
 
 ---
 #### Historical links related to this standard
 
+- [SWC126:Insufficient Gas Griefing](https://swcregistry.io/docs/SWC-126/)
 - Article from Hedera: [Smart Legal Contract](https://hedera.com/learning/smart-contracts/smart-legal-contracts)
-- Project from Law Commission UK: [Smart Legal Contract](https://lawcom.gov.uk/project/smart-contracts)
+- Project from Law Commission United Kingdom: [Smart Legal Contract](https://lawcom.gov.uk/project/smart-contracts)
 
 #### Appendix
 

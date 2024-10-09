@@ -49,6 +49,7 @@ var contractAddress = keccak256("<CONTRACT_NAME>").toString().slice(0, 20)
 ---
 #### Historical links related to this standard
 
+- [EVM Storage Layout](https://docs.soliditylang.org/en/latest/internals/layout_in_storage.html)
 - Article from Avalanche [Customizing the EVM with Stateful Precompiles](https://medium.com/avalancheavax/customizing-the-evm-with-stateful-precompiles-f44a34f39efd)
 - Article from AppLayer [Stateful Precompiles: EVM Game Changers or Another Overhyped Complexity?](https://medium.com/@AppLayerLabs/stateful-precompiles-evm-game-changers-or-another-overhyped-complexity-b064145b290e)
 - Article from knauss [Precompiles & stateful precompiles](https://knauss.dev/posts/sixteenth-post/)
