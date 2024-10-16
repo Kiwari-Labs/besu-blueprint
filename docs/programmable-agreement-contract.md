@@ -6,6 +6,7 @@ status: Draft
 ---
 
 ## Simple Summary  
+
 The Programmable Agreement Contract lets multiple parties create, update, and finalize legally binding agreements on the blockchain, using smart contracts for automatic enforcement and transparency of the agreed terms.
 
 ## Abstract  
