@@ -23,6 +23,11 @@ The Virtual Machine acts as a virtual processor to execute transactions on the b
 - Outside the Runtime Environment: Traditional smart contracts, written in `Solidity` or `Vyper` and executed in the `EVM` for other blockchain also often limited by `gas` costs and computational overhead. Precompiled contracts offer a way to execute computationally intensive tasks more efficiently because they are directly implemented in the client software, bypassing some of the overhead imposed by the `EVM` or `Virtual Machine` layer. Some operations, such as cryptographic functions, heavy and high precision arithmetic operation or large-scale data processing, are computationally expensive (require high `gas`/transaction fee) or slow when implemented in smart contracts can't executed under network `blocktime` frame. A precompiled contract allows these operations to be handled natively by the client in a more efficient programming language (e.g., C++, Rust, Go, or Other).
 - State Management: By incorporating stateful logic into the precompiled contract, developers gain the ability to maintain and manipulate contract-specific data across multiple transactions. This enables the creation of more dynamic and powerful blockchain applications that can handle complex operations and state transitions efficiently.
 
+Some potential use cases for stateful precompiled contracts include
+
+Order Book Decentralized Exchange (DEX) enabling complex functionalities such as order matching and tracking for DEX.  
+Near Real-time Application and Internet Of Things  off-load the blockchain by integrating to external data and services
+
 ## Guideline
 
 #### Determining the Custom Precompiled Contract Address
