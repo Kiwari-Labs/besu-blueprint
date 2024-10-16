@@ -19,8 +19,8 @@ The Programmable Agreement Contract lets multiple parties create, update, and fi
 ## Rationale
 
 - Proxy Pattern smart contract for modularity and flexible for business logic 
-- Multi-signature mechanism 
-- High level Syntax 
+- Multi-signature mechanism to ensure that all parties involved in the agreement provide their consent, enhancing security and trustworthiness.
+- High level Syntax that simplifies the development process, making it easier for users to create and manage agreements without deep knowledge of Solidity or blockchain programming.
 
 ## Design and Technique
 
@@ -156,47 +156,67 @@ using `bytes` instead of `struct`, the Programmable Agreement Contract achieves 
 ``` solidity
 function transactionLength() external view returns (uint256);
 ```
+- Propose:  
+- Returns:  
 
 ``` solidity
 function status() external view returns (bool);
 ```
+- Propose:  
+- Returns:  
 
 ``` solidity
 function approveAgreement(bytes calldata data) external;
 ```
+- Propose:  
+- Parameters:  
 
 ``` solidity
 function approveChange(bytes calldata data) external;
 ```
-
+- Propose:  
+- Parameters:  
+  
 ``` solidity
 function revokeTransaction() external;
 ```
+- Propose:  
 
 ``` solidity
 function rejectTransaction() external;
 ```
+- Propose:  
+- Returns:  
 
 ``` solidity
 function implementation() external view returns (address);
 ```
+- Propose:  
 
 #### Interface of Implementation Contract
 ``` solidity
 function agreement(bytes memory x, bytes memory y) external returns (bool);
 ```
+- Propose:  
+- Parameters:  
+- Returns:  
 
 ``` solidity
 function name() external view returns (string memory);
 ```
+- Propose:  
+- Returns:  
+
 
 ``` solidity
 function version() external view returns (uint256);
 ```
+- Propose:  
+- Returns:  
 
 ## Security Considerations
 
-- [SWC126:Insufficient Gas Griefing](https://swcregistry.io/docs/SWC-126/) 
+- [SWC126:Insufficient Gas Griefing](https://swcregistry.io/docs/SWC-126/) he complexity of logic within functions like `_verifyAgreement` could lead to situations where gas limits are exceeded when external call to `agreement` function.
 - [SWC123:Requirement Violation](https://swcregistry.io/docs/SWC-123/) 
 - [SWC131:Presence of unused variables](https://swcregistry.io/docs/SWC-131/) 
 

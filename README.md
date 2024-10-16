@@ -1,22 +1,22 @@
-# WangJai
+# DLP: Distributed Ledger Technology Based Loyalty Platform
 
-[WangJai](https://wangjai.io) is a DLT-based Loyalty Platform that use [hyperledger/besu](https://github.com/hyperledger/besu)
+[DLP](https://dlp.io) is a DLT-based Loyalty Platform that use [hyperledger/besu](https://github.com/hyperledger/besu)
 
 ### Network Parameter and Configuration
 
 `mainnet` is stand for production.  
 `testnet` is stand develop and staging.
 
-| Parameter    | Mainnet                               | Testnet                               |
-| ------------ | ------------------------------------- | ------------------------------------- |
-| NETWORK_NAME | `WangJai`                             | `WangJai Testnet`                     |
-| CHAIN_ID     | `87746573`                            | `11687746573`                         |
-| SYMBOL       | `WJAI`                                | `tWJAI`                               |
-| RPC_URL      | `https://wangjai.rpc.mainnet.io`      | `https://wangjai.rpc.testnet.io`      |
-| EXPLORER_URL | `https://wangjai.explorer.mainnet.io` | `https://wangjai.explorer.testnet.io` |
-| BLOCK_PERIOD | `3` second                            | `12` seconds                          |
-| TOKEN_LOGO   | `none`                                | `none`                                |
-| NETWORK_LOGO | `none`                                | `none`                                |
+| Parameter    | Mainnet                           | Testnet                           |
+| ------------ | --------------------------------- | --------------------------------- |
+| NETWORK_NAME | `DLP`                             | `DLP Testnet`                     |
+| CHAIN_ID     | `687680`                          | `116687680`                     |
+| SYMBOL       | `DLP`                             | `tDLP`                            |
+| RPC_URL      | `https://dlp.rpc.mainnet.io`      | `https://dlp.rpc.testnet.io`      |
+| EXPLORER_URL | `https://dlp.explorer.mainnet.io` | `https://dlp.explorer.testnet.io` |
+| BLOCK_PERIOD | `3` second                        | `12` seconds                      |
+| TOKEN_LOGO   | `none`                            | `none`                            |
+| NETWORK_LOGO | `none`                            | `none`                            |
 
 If including latency of network, other service and etc (`~3` seconds). user may wait up to `6` seconds for mainnet and `15` seconds for testnet.
 
