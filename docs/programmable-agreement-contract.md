@@ -300,8 +300,8 @@ function version() external view returns (uint256);
 
 #### Appendix
 
-**ABI** definition Application Binary Interface
-**Multi-Signature** definition requirement for a transaction to have two or more signatures before it can be executed
+**ABI** definition Application Binary Interface  
+**Multi-Signature** definition requirement for a transaction to have two or more signatures before it can be executed  
 
 ## License
 Release under the [MIT] license.   
