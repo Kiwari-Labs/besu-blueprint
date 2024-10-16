@@ -10,6 +10,8 @@ The Programmable Agreement Contract lets multiple parties create, update, and fi
 
 ## Abstract  
 
+This standard establishes on-chain agreement contracts to create and manage agreements in a decentralized environment. It empowers parties to formalize agreements using self-executing smart contracts without intermediaries. The contract unequivocally supports proposing, approving, or rejecting agreements and meticulously records transactions associated with each party’s consent or dissent. It is meticulously designed to seamlessly integrate with decentralized systems while introducing robust mechanisms for agreement management.
+
 ## Motivation  
 
 The aim is to create a digital contract system that borrows principles from traditional legal agreements and integrates them with blockchain technology. By drawing inspiration from
