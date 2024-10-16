@@ -12,9 +12,11 @@ The Programmable Agreement Contract lets multiple parties create, update, and fi
 
 ## Motivation  
 
-- [Bilateral Agreement](https://www.law.cornell.edu/wex/bilateral_contract)
-- [Multilateral Agreement](https://www.law.cornell.edu/wex/multilateral)
-- [Smart legal Contract](https://lawcom.gov.uk/project/smart-contracts)
+The aim is to create a digital contract system that borrows principles from traditional legal agreements and integrates them with blockchain technology. By drawing inspiration from
+
+- [Bilateral Agreement](https://www.law.cornell.edu/wex/bilateral_contract) two-party agreements in which each party fulfills their obligations.
+- [Multilateral Agreement](https://www.law.cornell.edu/wex/multilateral) multiple parties agreements which each party fulfills their obligations.
+- [Smart legal Contract](https://lawcom.gov.uk/project/smart-contracts) automated and enforceable agreements that operate on decentralized networks without the need for intermediaries.
 
 ## Rationale
 
@@ -28,6 +30,27 @@ The Programmable Agreement Contract lets multiple parties create, update, and fi
 
 This concept refers to abstracting common comparison operations (like comparing amounts, addresses, or balances) into reusable functions or methods that simplify complex logic.  
 By wrapping these comparisons into higher-level constructs, the contract becomes more modular and easier to read, maintain, while serving secure and extendable.
+
+``` solidity
+    /// @notice Checks if two addresses are equal
+    /// @param x The first address to compare
+    /// @param y The second address to compare
+    /// @return result True if the addresses are equal, otherwise false
+    function equal(address x, address y) internal pure returns (bool result) {
+        assembly {
+            result := eq(x, y)
+        }
+    }
+```
+
+``` solidity
+    /// ... skipping
+    using AddressComparator for address;
+
+    function compare(address x, address y) public view return (bool) {
+        return x.equal(y);
+    }
+```
 
 #### Implementation Contract Template
 ``` solidity
@@ -273,6 +296,9 @@ function version() external view returns (uint256);
 - Project from Law Commission UK: [Smart Legal Contract](https://lawcom.gov.uk/project/smart-contracts)
 
 #### Appendix
+
+**ABI** definition Application Binary Interface
+**Multi-Signature** definition requirement for a transaction to have two or more signatures before it can be executed
 
 ## License
 Release under the [MIT] license.   
