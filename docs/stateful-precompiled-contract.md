@@ -39,13 +39,22 @@ This section explains how the address of the custom precompiled contract, `CONTR
 bytes(keccak256("<CONTRACT_NAME>") , 20)
 bytes(ripemd160("<CONTRACT_NAME>") , 20)
 bytes(sha256("<CONTRACT_NAME>") , 20)
+bytes(blake2b("<CONTRACT_NAME>"),20)
+bytes(blake3("<CONTRACT_NAME>"),20)
+```
 
+**Note** adopting `blake2b` or `blake3` for calculating storage slots in stateful precompiled contracts, as opposed to using `keccak256`, can improve efficiency and speed.  
+  related link
+  - polkadot academy cryptography [hashes](https://polkadot-blockchain-academy.github.io/pba-book/cryptography/hashes/page.html)
+  - crypto stack exchange question [#31674](https://crypto.stackexchange.com/questions/31674/what-advantages-does-keccak-sha-3-have-over-blake2)
+
+``` python
 # bitcoin style base58 representation
 base58(sha256("<CONTRACT_NAME>"),"<PREFIX>")
 ```
 
-1. Hash the Contract Name: The contract name is hashed using the `keccak256` algorithm for `EVM`.
-2. Extract the Address: The resulting hash is then converted to a string, and the first 20 characters are taken as the contract's address for EVM based blockchain.  
+1. Hashing the contract name hashed using the `keccak256` or hex representation algorithm for `EVM`.
+2. Extract the address from hash by converted to a string, and the first 20 characters are taken as the contract's address for `EVM` based blockchain.  
    > This method ensures a unique and consistent address for the stateful precompiled contract based on its name.
 
 #### Calculate Storage Slot for Stateful Precompiled Contract
@@ -89,5 +98,5 @@ Ensuring the integrity and collision resistance of the hash function is critical
 **Stateless** definition applications or process that do not store any information about previous interactions. Each user request is treated independently, meaning the system does not retain any data from prior sessions.
 
 ## License
-Release under the [MIT] license.   
+Release under the [MIT](LINCENSE-MIT) license.   
 Copyright (C) to author. All rights reserved.
