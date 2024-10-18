@@ -1,6 +1,6 @@
 ---
-title: System Smart Contract Transaction Fee Waiving Registry
-description: A guidance to implanting system smart contract for waiving transaction fee.
+title: Guidance to implementing a system smart contract for waiving transaction fee.
+description: A guide to implementing a system smart contract that waives transaction fees, enhancing user experience in decentralized applications (DApps).
 author: sirawt (@MASDXI), Paramet Kongjaroen (@parametprame)
 status: Draft
 ---
