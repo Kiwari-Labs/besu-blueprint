@@ -7,16 +7,16 @@
 `mainnet` is stand for production.  
 `testnet` is stand develop and staging.
 
-| Parameter    | Mainnet                           | Testnet                           |
-| ------------ | --------------------------------- | --------------------------------- |
-| NETWORK_NAME | `DLP`                             | `DLP Testnet`                     |
-| CHAIN_ID     | `687680`                          | `116687680`                     |
-| SYMBOL       | `DLP`                             | `tDLP`                            |
-| RPC_URL      | `https://dlp.rpc.mainnet.io`      | `https://dlp.rpc.testnet.io`      |
-| EXPLORER_URL | `https://dlp.explorer.mainnet.io` | `https://dlp.explorer.testnet.io` |
-| BLOCK_PERIOD | `3` second                        | `12` seconds                      |
-| TOKEN_LOGO   | `none`                            | `none`                            |
-| NETWORK_LOGO | `none`                            | `none`                            |
+| Parameter    | Mainnet                                | Testnet                                |
+| ------------ | -------------------------------------- | -------------------------------------- |
+| NETWORK_NAME | `DLP`                                  | `DLP Testnet`                          |
+| CHAIN_ID     | `687680`                               | `116687680`                            |
+| SYMBOL       | `DLP`                                  | `tDLP`                                 |
+| RPC_URL      | `https://dlp-rpc-mainnet.io`           | `https://dlp-rpc-testnet.io`           |
+| EXPLORER_URL | `https://dlp-blockexplorer-mainnet.io` | `https://dlp-blockexplorer.testnet.io` |
+| BLOCK_PERIOD | `3` seconds                            | `12` seconds                           |
+| TOKEN_LOGO   | `none`                                 | `none`                                 |
+| NETWORK_LOGO | `none`                                 | `none`                                 |
 
 If including latency of network, other service and etc (`~3` seconds). user may wait up to `6` seconds for mainnet and `15` seconds for testnet.
 
