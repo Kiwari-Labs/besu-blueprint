@@ -59,14 +59,32 @@ base58(sha256("<CONTRACT_NAME>"),"<PREFIX>")
 
 #### Calculate Storage Slot for Stateful Precompiled Contract
 
+data store on stateful can handling in multiple ways
+
 - storage slot style  
-> // TODO
-
+  - store state on contract callee
+  ``` python
+    let storage = statedb.get(contractAddress)
+    let slot = hash(namespace, contractAddress, index)
+    storage.sstore(slot, data)
+  ```
+  - store state on stateful 
+  ``` python
+    var storage = statedb.get(statefulAddress)
+    var slot = hash(contractAddress, index)
+    storage.store(slot, data)
+    storage.commit()
+  ```
 - wide column style  
-> // TODO
+  ``` python
+  var storage = statedb.get(address) # stateful address or contract address
+  var slot = hash(row, column, index)
+  storage.store(slot, data)
+  storage.commit()
+  ```
 
-- other style  
-> // TODO
+- other style 
+> maybe sharded for enable parallel avoid touching same state when perform READ/WRITE
 
 ## Security Considerations
 
