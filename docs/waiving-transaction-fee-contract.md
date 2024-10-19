@@ -30,54 +30,68 @@ The mechanism uses an `allowList` to designate contracts eligible for gas waivin
 This strategy makes it more financially viable for enterprises to leverage public blockchains `L1` or `L2` that focus on the cooperate and enterprise use case, while not too strive to create a heavy optimized smart contract that could have potentially to have a vulnerabilities.
 
 ## Interface
-Interface for Solidity
+Interface for `solidity` implementation
 ``` solidity
 event waiveUpdated(address indexed _contract, uint256 oldRatio, uint256 newRatio);
 ```
 - Purpose:  
 - Parameters:  
+  - `contractAddr`:
+  - `oldRatio`:
+  - `newRatio`:
   
 ``` solidity
 event allowListGranted(address indexed _contract, uint256 ratio);
 ```
 - Purpose:  
 - Parameters:  
+  - `contractAddr`:
+  - `ratio`:
   
 ``` solidity
 event allowListRevoked(address indexed _contract);
 ```
-- Purpose:  
+- Purpose: 
 - Parameters:  
+  - `contractAddr`:
 
 ``` solidity
 function setWaive(address contractAddr, uint256 newRatio) external returns (uint256);
 ```
-- Purpose:  
+- Purpose: Sets the waiving ratio for a specified contract address.
 - Parameters:  
+  - `contractAddr`:
+  - `newRatio`:
 - Returns:  
 
 ``` solidity
 function grantAllowList(address contractAddr, uint256 ratio) external returns (bool);
 ```
-- Purpose:  
+- Purpose: Grants allow list status and sets the waiving ratio for a specified contract address.
 - Parameters:  
+  - `contractAddr`:
+  - `ratio`:
 - Returns:  
 
 ``` solidity
 function revokeAllowList(address contractAddr) external returns (bool);
 ```
-- Purpose:  
+- Purpose: Revokes allow list status for a specified contract address.
 - Parameters:  
+  - `contractAddr`:
 - Returns:  
 
 ``` solidity
 function waive(address contractAddr) external view returns (bool isAllowList, uint256 waivingRatio);
 ```
-- Purpose:  
+- Purpose: Returns the allow list status and waiving ratio for a specified contract address.
 - Parameters:  
-- Returns:  
+  - `contractAddr`:
+- Returns: The allow list status and waiving ratio.
 
 ## Security Considerations
+
+- [CWE-770:Allocation of Resources Without Limits or Throttling](https://cwe.mitre.org/data/definitions/770.html)
 
 When waiving by overwrite 100% of the gas used to `zero` on the transaction means the transaction will not consume any gas from the sender and not consume any gas from the gas pool `(blockGasLimit)`,  
 to mitigate create condition checking waiving ratio in length from `MINIMUM_VALUE` to `MAXIMUM_VALUE`.  
@@ -86,11 +100,9 @@ to mitigate create condition checking waiving ratio in length from `MINIMUM_VALU
 
 #### Historical links related to this standard
 
-- Ethereum Yellow Paper (Gas Calculation Logic)
-- EIP-1559
 - [Fee Delegation](https://docs.kaia.io/learn/transactions/fee-delegation/) in `kaia`
+- [Fee Grant](https://www.docs.sei.io/dev-advanced-concepts/fee-grants) in `sei`
 - [Fee Grant Module](https://tutorials.cosmos.network/tutorials/8-understand-sdk-modules/2-feegrant.html) in `cosmos-sdk`
-- [Fee Grant](https://www.docs.sei.io/dev-advanced-concepts/fee-grants) in Sei Network
 - [Free Grant Module](https://docs.xpla.io/develop/develop/core-modules/fee-grant/) in `xpla`
 
 ## Mitigation Security Concern
