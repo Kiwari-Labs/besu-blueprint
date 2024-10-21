@@ -20,7 +20,7 @@
 
 If including latency of network, other service and etc (`~3` seconds). user may wait up to `6` seconds for mainnet and `15` seconds for testnet.
 
-> [!NOTE] Network Parameters
+> [!NOTE]
 > `CHAIN_ID` generate form ASCII code of the `SYMBOL`  
 > The network operates without a native token for transaction fees and is built as a zero-transaction fee system.  
 > However, it still requires a currency symbol for functional representation for third-party wallet application like  
@@ -35,7 +35,7 @@ If including latency of network, other service and etc (`~3` seconds). user may 
 | **Storage**  | 1 TB                       | 2 TB          | 500 GB         | 100 GB                     | 250 GB        | 50 GB          |
 | **Internet** | 100 Mb/s                   | 100 Mb/s      | 100 Mb/s       | 25 Mb/s                    | 25 Mb/s       | 25 Mb/s        |
 
-> [!TIP] Guidance for choosing hardware
+> [!TIP]
 > - **CPU:** Focus on high clock speed rather than core count for optimal performance. A high clock speed, typically above 3.0 GHz
 > - **Storage:** SSD is recommended for faster data access and better overall performance.
 > - **RPC:** is running as archive node not pruning any data.
@@ -52,7 +52,7 @@ If including latency of network, other service and etc (`~3` seconds). user may 
 | Google Cloud       | `n2-highmem-16`     | `n2-highmem-8`   | `n2-standard-2` | `n2-standard-2`     | `n2-standard-1` | `e2-micro`           |
 | IBM Cloud          | `bx2-16x64`         | `bx2-8x32`       | `bx2-2x8`       | `bx2-2x8`           | `bx2-2x4`       | `bx2-1x2`            |
 
-> [!NOTE] Hardware specification different from suggest
+> [!NOTE]
 > Some instance models may not exactly meet the hardware requirements  mentioned above but have been chosen for cost-effectiveness and resource optimization in relation to the tasks of each node.
 
 | Node Type  | Recommended | Minimum |
@@ -99,14 +99,14 @@ Smart Contract
 | `AgreementFactoryContract`    | `0x572d9d34d35e0a6dae42c724a1c1335b3a36d599` | `0xc6fb65bfd35e0a6dae42c724a1c1335b3a36d599` |
 | `OtherContract`               | `0x572d9d34d35`                              | `0xc6fb65bf`                                 |
 
-> [!NOTE] Samrt Contract Address
+> [!NOTE]
 > The deployed address may differ from the desired one if it is manually deployed from an externally owned account (EOA) and not specified as a pre-deployed contract in the genesis configuration file.  
 > `ERC721` and `ERC1155` may suitable for both voucher and coupon.
 
 source code of each service contracts are store at [monorepo-service-contracts](https://github.com/Kiwari-labs/monorepo-service-contracts)
 
-> [!WARNING] Under Development
-> `stateful-precompilec-contract` and `service-contracts` may change in the future.
+> [!WARNING]
+> `stateful-precompilec-contract` and `service-contracts` are under Development may change in the future.
 
 ### Run example network with docker-compose
 
