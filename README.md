@@ -1,11 +1,12 @@
 # DLP: Distributed Ledger Technology Based Loyalty Platform
 
-[DLP](https://dlp.io) is a DLT-based Loyalty Platform that use [hyperledger/besu](https://github.com/hyperledger/besu)
+DLT-based Loyalty Platform (DLP) that use [hyperledger/besu](https://github.com/hyperledger/besu)
 
 ### Network Parameter and Configuration
 
-`mainnet` is stand for production.  
-`testnet` is stand develop and staging.
+> [!TIP]  
+>`mainnet` is network for production use.  
+> `testnet` is network for develop and staging use.
 
 | Parameter    | Mainnet                                        | Testnet                                        |
 | ------------ | ---------------------------------------------- | ---------------------------------------------- |
