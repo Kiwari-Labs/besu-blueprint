@@ -26,7 +26,7 @@ The Virtual Machine acts as a virtual processor to execute transactions on the b
 Some potential use cases for stateful precompiled contracts include
 
 Order Book Decentralized Exchange (DEX) enabling complex functionalities such as order matching and tracking for DEX.  
-Near Real-time Application and Internet Of Things  off-load the blockchain by integrating to external data and services
+Near Real-time Application and Internet Of Things off-load the blockchain by integrating to external data and services
 
 ## Guideline
 
@@ -34,8 +34,14 @@ Near Real-time Application and Internet Of Things  off-load the blockchain by in
 
 This section explains how the address of the custom precompiled contract, `CONTRACT_ADDRESS`, is calculated.
 
-``` python
-# ethereum style hex representation 
+<div align="center">
+
+$ContractAddress = hash(ContractName)$
+
+</div>
+
+```python
+# ethereum style hex representation
 bytes(keccak256("<CONTRACT_NAME>") , 20)
 bytes(ripemd160("<CONTRACT_NAME>") , 20)
 bytes(sha256("<CONTRACT_NAME>") , 20)
@@ -44,59 +50,62 @@ bytes(blake3("<CONTRACT_NAME>"),20)
 ```
 
 **Note** adopting `blake2b` or `blake3` for calculating storage slots in stateful precompiled contracts, as opposed to using `keccak256`, can improve efficiency and speed.  
-  related link
-  - polkadot academy cryptography [hashes](https://polkadot-blockchain-academy.github.io/pba-book/cryptography/hashes/page.html)
-  - crypto stack exchange question [#31674](https://crypto.stackexchange.com/questions/31674/what-advantages-does-keccak-sha-3-have-over-blake2)
+ related link
 
-``` python
+- polkadot academy cryptography [hashes](https://polkadot-blockchain-academy.github.io/pba-book/cryptography/hashes/page.html)
+- crypto stack exchange question [#31674](https://crypto.stackexchange.com/questions/31674/what-advantages-does-keccak-sha-3-have-over-blake2)
+
+```python
 # bitcoin style base58 representation
 base58(sha256("<CONTRACT_NAME>"),"<PREFIX>")
 ```
 
 1. Hashing the contract name hashed using the `keccak256` or hex representation algorithm for `EVM`.
-2. Extract the address from hash by converted to a string, and the first 20 characters are taken as the contract's address for `EVM` based blockchain.  
+2. Extract the address from hash by converted to a string, and the first 20 characters are taken as the contract's address for `EVM` based blockchain.
    > This method ensures a unique and consistent address for the stateful precompiled contract based on its name.
 
 #### Calculate Storage Slot for Stateful Precompiled Contract
 
 data store on stateful can handling in multiple ways
 
-- storage slot style  
+- storage slot style
   - store state on contract callee
-  ``` python
+  ```python
     let storage = statedb.get(contractAddress)
     let slot = hash(namespace, contractAddress, index)
     storage.sstore(slot, data)
   ```
-  - store state on stateful 
-  ``` python
+  - store state on stateful
+  ```python
     var storage = statedb.get(statefulAddress)
     var slot = hash(contractAddress, index)
     storage.store(slot, data)
     storage.commit()
   ```
-- wide column style  
-  ``` python
+- wide column style
+
+  ```python
   var storage = statedb.get(address) # stateful address or contract address
   var slot = hash(row, column, index)
   storage.store(slot, data)
   storage.commit()
   ```
 
-- other style 
-> maybe sharded for enable parallel avoid touching same state when perform READ/WRITE
+- other style
+  > maybe sharded for enable parallel avoid touching same state when perform READ/WRITE
 
 ## Security Considerations
 
 - [SC04:Improper Access Control](https://owasp.org/www-project-smart-contract-top-10/2023/en/src/SC04-access-control-vulnerabilities.html) If a stateful or stateless precompiled contract isn’t securely and correctly implemented when connecting to external services,  
-it may lead to unauthorized access and inappropriate usage, potentially increasing the risk and exposure of the external service connected to the smart contract.
+  it may lead to unauthorized access and inappropriate usage, potentially increasing the risk and exposure of the external service connected to the smart contract.
 - [SWC136:Unencrypted Private Data On-Chain](https://swcregistry.io/docs/SWC-136/) Utilizing a custom stateful or stateless precompiled contract that interacts directly with external systems to acquire data may lead to storing sensitive information on-chain. If this data is stored without proper encryption or protection,  
-it could expose private or sensitive information to unauthorized parties, violating privacy and security standards.
+  it could expose private or sensitive information to unauthorized parties, violating privacy and security standards.
 - [SWC124:Write to Arbitrary Storage Location](https://swcregistry.io/docs/SWC-124/) Using an alternate hash function instead of `keccak256` for storage slot calculations could potentially expose vulnerabilities, such as writing to arbitrary storage locations,  
-Ensuring the integrity and collision resistance of the hash function is critical for preventing unintended overwriting or access to storage areas
+  Ensuring the integrity and collision resistance of the hash function is critical for preventing unintended overwriting or access to storage areas
 - The precompiled contract has potential takes too long to execute, exceeding the block's execution time frame limit.
 
 ---
+
 #### Historical links related to this standard
 
 - Technical Document from `solidity` [Documents](https://docs.soliditylang.org/en/latest/internals/layout_in_storage.html)
@@ -107,6 +116,7 @@ Ensuring the integrity and collision resistance of the hash function is critical
 - Example Implementation `Native ERC20` contract from [moonbeam/moonriver](https://docs.moonbeam.network/builders/ethereum/precompiles/ux/erc20/)
 
 #### Appendix
+
 **Virtual Processor** definition A virtual processor is a representation of a physical processor core to the operating system of a logical partition that uses shared processors.  
 **Co-Processor** definition a microprocessor designed to supplement the capabilities of the primary processor.  
 **EVM** definition Ethereum Virtual Machine
@@ -116,5 +126,6 @@ Ensuring the integrity and collision resistance of the hash function is critical
 **Stateless** definition applications or process that do not store any information about previous interactions. Each user request is treated independently, meaning the system does not retain any data from prior sessions.
 
 ## License
-Release under the [MIT](LINCENSE-MIT) license.   
+
+Release under the [MIT](LINCENSE-MIT) license.  
 Copyright (C) to author. All rights reserved.
