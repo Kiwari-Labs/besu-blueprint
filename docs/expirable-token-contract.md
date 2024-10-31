@@ -170,12 +170,12 @@ Assuming each `Era` contains 4 `slots`, which aligns with familiar time-based di
 
 #### Appendix
 
-`Demurrage Token` definition often expressed as a decay in token balance  
-`UTXO` definition Unspent Transaction Output.  
-`e-Money` definition electronic money.  
-`Era` definition is a Similar idea for a page in pagination.
-`FIFO` definition First-In-First-Out.  
-`Slot` definition is Similar to the idea of the index on each page of pagination.
+**Demurrage Token** definition often expressed as a decay in token balance  
+**UTXO** definition Unspent Transaction Output.  
+**e-Money** definition electronic money.  
+**Era** definition is a Similar idea for a page in pagination.
+**FIFO** definition First-In-First-Out.  
+**Slot** definition is Similar to the idea of the index on each page of pagination.
 
 ## License
 Release under the [BSL-1.1](LICENSE-BSL) license.   
