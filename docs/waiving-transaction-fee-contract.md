@@ -125,5 +125,5 @@ to mitigate create condition checking waiving ratio in length from `MINIMUM_VALU
 
 ## License
 
-Release under the [MIT](LINCENSE-MIT) license.  
+Release under the [MIT](../LINCENSE-MIT) license.  
 Copyright (C) to author. All rights reserved.

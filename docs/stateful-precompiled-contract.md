@@ -127,5 +127,5 @@ data store on stateful can handling in multiple ways
 
 ## License
 
-Release under the [MIT](LINCENSE-MIT) license.  
+Release under the [MIT](../LICENSE-MIT) license.  
 Copyright (C) to author. All rights reserved.

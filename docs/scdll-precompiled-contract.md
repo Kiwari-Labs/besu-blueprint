@@ -245,5 +245,5 @@ if passing start 0 is start from sentinel node size should be start from 1 to `M
 
 ## License
 
-Release under the [MIT](LINCENSE-MIT) license.  
+Release under the [MIT](../LINCENSE-MIT) license.  
 Copyright (C) to author. All rights reserved.

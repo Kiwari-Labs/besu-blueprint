@@ -304,5 +304,5 @@ function version() external view returns (uint256);
 **Multi-Signature** definition requirement for a transaction to have two or more signatures before it can be executed  
 
 ## License
-Release under the [MIT](LINCENSE-MIT) license.   
+Release under the [MIT](../LINCENSE-MIT) license.   
 Copyright (C) to author. All rights reserved.

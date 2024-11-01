@@ -178,5 +178,5 @@ Assuming each `Era` contains 4 `slots`, which aligns with familiar time-based di
 **Slot** definition is Similar to the idea of the index on each page of pagination.
 
 ## License
-Release under the [BSL-1.1](LICENSE-BSL) license.   
+Release under the [BUSL-1.1](../LICENSE-BUSL) license.   
 Copyright (C) to author. All rights reserved.
