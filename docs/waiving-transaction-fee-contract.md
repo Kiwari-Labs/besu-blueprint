@@ -30,62 +30,71 @@ The mechanism uses an `allowList` to designate contracts eligible for gas waivin
 This strategy makes it more financially viable for enterprises to leverage public blockchains `L1` or `L2` that focus on the cooperate and enterprise use case, while not too strive to create a heavy optimized smart contract that could have potentially to have a vulnerabilities.
 
 ## Interface
+
 Interface for `solidity` implementation
-``` solidity
+
+```solidity
 event waiveUpdated(address indexed _contract, uint256 oldRatio, uint256 newRatio);
 ```
-- Purpose:  
-- Parameters:  
+
+- Purpose:
+- Parameters:
   - `contractAddr`:
   - `oldRatio`:
   - `newRatio`:
-  
-``` solidity
+
+```solidity
 event allowListGranted(address indexed _contract, uint256 ratio);
 ```
-- Purpose:  
-- Parameters:  
+
+- Purpose:
+- Parameters:
   - `contractAddr`:
   - `ratio`:
-  
-``` solidity
+
+```solidity
 event allowListRevoked(address indexed _contract);
 ```
-- Purpose: 
-- Parameters:  
+
+- Purpose:
+- Parameters:
   - `contractAddr`:
 
-``` solidity
+```solidity
 function setWaive(address contractAddr, uint256 newRatio) external returns (uint256);
 ```
+
 - Purpose: Sets the waiving ratio for a specified contract address.
-- Parameters:  
+- Parameters:
   - `contractAddr`:
   - `newRatio`:
-- Returns:  
+- Returns:
 
-``` solidity
+```solidity
 function grantAllowList(address contractAddr, uint256 ratio) external returns (bool);
 ```
+
 - Purpose: Grants allow list status and sets the waiving ratio for a specified contract address.
-- Parameters:  
+- Parameters:
   - `contractAddr`:
   - `ratio`:
-- Returns:  
+- Returns:
 
-``` solidity
+```solidity
 function revokeAllowList(address contractAddr) external returns (bool);
 ```
-- Purpose: Revokes allow list status for a specified contract address.
-- Parameters:  
-  - `contractAddr`:
-- Returns:  
 
-``` solidity
+- Purpose: Revokes allow list status for a specified contract address.
+- Parameters:
+  - `contractAddr`:
+- Returns:
+
+```solidity
 function waive(address contractAddr) external view returns (bool isAllowList, uint256 waivingRatio);
 ```
+
 - Purpose: Returns the allow list status and waiving ratio for a specified contract address.
-- Parameters:  
+- Parameters:
   - `contractAddr`:
 - Returns: The allow list status and waiving ratio.
 
@@ -94,9 +103,10 @@ function waive(address contractAddr) external view returns (bool isAllowList, ui
 - [CWE-770:Allocation of Resources Without Limits or Throttling](https://cwe.mitre.org/data/definitions/770.html)
 
 When waiving by overwrite 100% of the gas used to `zero` on the transaction means the transaction will not consume any gas from the sender and not consume any gas from the gas pool `(blockGasLimit)`,  
-to mitigate create condition checking waiving ratio in length from `MINIMUM_VALUE` to `MAXIMUM_VALUE`.  
-- It's could be potential to create Distributed Denial of Service(DDoS).  
-- Validator can be increase their accepted `gasPrice`. to maintain their profit.  
+to mitigate create condition checking waiving ratio in length from `MINIMUM_VALUE` to `MAXIMUM_VALUE`.
+
+- It's could be potential to create Distributed Denial of Service(DDoS).
+- Validator can be increase their accepted `gasPrice`. to maintain their profit.
 
 #### Historical links related to this standard
 
@@ -111,8 +121,9 @@ to mitigate create condition checking waiving ratio in length from `MINIMUM_VALU
 
 **Gas** definition  
 **L1** definition Layer 1 network  
-**L2** definition  Layer 2 network 
+**L2** definition Layer 2 network
 
 ## License
-Release under the [MIT](LINCENSE-MIT) license.   
+
+Release under the [MIT](LINCENSE-MIT) license.  
 Copyright (C) to author. All rights reserved.

@@ -42,11 +42,11 @@ $ContractAddress = hash(ContractName)$
 
 ```python
 # ethereum style hex representation
-bytes(keccak256("<CONTRACT_NAME>") , 20)
-bytes(ripemd160("<CONTRACT_NAME>") , 20)
-bytes(sha256("<CONTRACT_NAME>") , 20)
-bytes(blake2b("<CONTRACT_NAME>"),20)
-bytes(blake3("<CONTRACT_NAME>"),20)
+bytes(keccak256("<CONTRACT_NAME>"), 20)
+bytes(ripemd160("<CONTRACT_NAME>"), 20)
+bytes(sha256("<CONTRACT_NAME>"), 20)
+bytes(blake2b("<CONTRACT_NAME>"), 20)
+bytes(blake3("<CONTRACT_NAME>"), 20)
 ```
 
 **Note** adopting `blake2b` or `blake3` for calculating storage slots in stateful precompiled contracts, as opposed to using `keccak256`, can improve efficiency and speed.  
@@ -73,7 +73,7 @@ data store on stateful can handling in multiple ways
   ```python
     let storage = statedb.get(contractAddress)
     let slot = hash(namespace, contractAddress, index)
-    storage.sstore(slot, data)
+    storage.store(slot, data)
   ```
   - store state on stateful
   ```python
