@@ -44,9 +44,7 @@ mapping(uint256 => List) lists;
 | 1    | 1      | middle   | $\text{hash(msg.sender, listId, 2)}$                     |
 | 1    | 2      | elements | $\text{hash(msg.sender, listId, 3, element, direction)}$ |
 
-direction with boolean type `true` which is `1` for `next` element `next` and `false` which is `0` for `previous` element  
-element `0` reserved for sentinel node which is use for fast retrieve first and last element of list
-all state store at msgSender address not the precompile state storage
+The direction is represented using a boolean type: `true` (or `1`) indicates the `next` element, while `false` (or `0`) indicates the `previous` element. Element `0` is reserved as a sentinel node, allowing quick access to the first and last elements of the list. All states are stored at the `msgSender` address rather than in the precompiled state storage.
 
 #### Interfaces
 
