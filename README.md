@@ -80,16 +80,21 @@ Xplugin-rocksdb-background-thread-count = 4
 Xplugin-rocksdb-high-spec-enabled = true
 ```
 
-### Keys differentiate from other `hyperledger/besu` network
+### Keys differentiate from official `hyperledger/besu` client
+
+System Contract Waiving Transaction Fee
+
+- `WaivingTransactionFeeContract` at address 
+`0xfcd36b9911ea5844070581a577ae85b5457a3897` which is generate from `keccak256(name).toBytes().slice(0, 20)`
 
 Stateful Precompiled Contract
 
 - `LinkedListStatefulPrecompiledContract` at address 
 `0x12bb07c003ca88db19f4301cdf2addeb9fe4c93f` which is generate from `keccak256(name).toBytes().slice(0, 20)`
 
-source code of stateful precompiled can be found on [repository](https://github.com/Kiwari-labs/besu)
+source code of forked `hyperledger/besu` that implementing system contract and stateful precompiled can be found on [repository](https://github.com/Kiwari-labs/besu)
 
-Smart Contract
+Service Smart Contract
 
 | Contract Name                 | Mainnet Address (desirable)                  | Testnet Address (desirable)                  |
 | ----------------------------- | -------------------------------------------- | -------------------------------------------- |
@@ -107,7 +112,7 @@ Smart Contract
 source code of each service contracts are store at [monorepo-service-contracts](https://github.com/Kiwari-labs/monorepo-service-contracts)
 
 > [!WARNING]
-> `stateful-precompilec-contract` and `service-contracts` are under Development may change in the future.
+> `stateful-precompile-contract` and `service-contracts` are under Development may change in the future.
 
 ### Run example network with docker-compose
 
