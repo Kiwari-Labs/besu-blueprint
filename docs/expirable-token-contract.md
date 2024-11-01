@@ -78,18 +78,20 @@ A **sorted** list is integral to this approach. Each slot maintains its own list
 ```solidity
 function tokenList(address account,uint256 era,uint8 slot) external view returns (uint256[] memory list);
 ```
+
 - Purpose: This function retrieves a list of token associated with a specific account, within a given era and slot.
 - Parameters:
-account: The address of the account whose token balances are being queried.
+  account: The address of the account whose token balances are being queried.
   - `era`: Refers to a specific time period or epoch in which the tokens are held.
   - `slot`: A subdivision of the era, representing finer divisions of time or state.
 - Returns: An array list of token corresponding to the specified era and slot.
-solidity
-Copy 
+  solidity
+  Copy
 
 ```solidity
 function balanceOfBlock(uint256 blocknumber) returns (uint256);
 ```
+
 - Purpose: This function returns the balance of tokens at a specific blockchain blocknumber.
 - Parameters:
   - `blocknumber`: The block number for which the token balance is being queried.
@@ -98,6 +100,7 @@ function balanceOfBlock(uint256 blocknumber) returns (uint256);
 ```solidity
 function transfer(address to, uint256 fromEra, uint8 fromSlot, uint256 toEra, uint8 toSlot) external returns (bool);
 ```
+
 - Purpose: This function works similarly to `ERC20` transfer but allows to move tokens within specific eras and slots.
 - Parameters:
   - `to`: The address of the account to which tokens are being transferred.
@@ -110,6 +113,7 @@ function transfer(address to, uint256 fromEra, uint8 fromSlot, uint256 toEra, ui
 ```solidity
 function transferFrom(address form, address to, uint256 fromEra,uint8 fromSlot,uint256 toEra,uint8 toSlot) external returns (bool);
 ```
+
 - Purpose: This function works similarly to `ERC20` transferFrom but allows to move tokens within specific eras and slots.
 - Parameters:
   - `from`: The address of the account from which tokens are being transferred.
@@ -121,6 +125,7 @@ function transferFrom(address form, address to, uint256 fromEra,uint8 fromSlot,u
 - Returns: A boolean value indicating whether the transfer was successful.
 
 ---
+
 ## Token Receipt and Transaction Likelihood across various blocktime
 
 Assuming each `Era` contains 4 `slots`, which aligns with familiar time-based divisions like a year being divided into four quarters, the following table presents various scenarios based on block time and token receipt intervals. It illustrates the potential transaction frequency and likelihood of receiving tokens within a given period.
@@ -178,5 +183,6 @@ Assuming each `Era` contains 4 `slots`, which aligns with familiar time-based di
 **Slot** definition is Similar to the idea of the index on each page of pagination.
 
 ## License
-Release under the [BUSL-1.1](../LICENSE-BUSL) license.   
+
+Release under the [BUSL-1.1](../LICENSE-BUSL) license.  
 Copyright (C) to author. All rights reserved.

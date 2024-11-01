@@ -1,6 +1,7 @@
 x-besu: &besu
   image: hyperledger/besu:24.8.0
-  # image: kiwarilabs/besu:24.8.0
+  # image: kiwarilabs/besu:<version>-precompile   # adding stateful precompile
+  # imags: kiwarilabs/besu:<version>-tx-waive     # adding system contract waiving transaction fee
 
 services:
   validator1:

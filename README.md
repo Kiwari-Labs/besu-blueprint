@@ -135,5 +135,5 @@ For support or any inquiries, feel free to reach out to us at [github-issue](htt
 
 ### License
 
-This repository is released under the [Business Source License 1.1](LICENSE).  
-Copyright (C) Kiwari Labs.
+This repository is released under the [BUSL-1.1](../LICENSE-BUSL).  
+Copyright (C) Kiwari Labs. All rights reserved.
