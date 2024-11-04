@@ -84,9 +84,7 @@ function tokenList(address account,uint256 era,uint8 slot) external view returns
   account: The address of the account whose token balances are being queried.
   - `era`: Refers to a specific time period or epoch in which the tokens are held.
   - `slot`: A subdivision of the era, representing finer divisions of time or state.
-- Returns: An array list of token corresponding to the specified era and slot.
-  solidity
-  Copy
+- Returns: An array list of token corresponding to the specified era and slot.  
 
 ```solidity
 function balanceOfBlock(uint256 blocknumber) returns (uint256);
@@ -178,9 +176,9 @@ Assuming each `Era` contains 4 `slots`, which aligns with familiar time-based di
 **Demurrage Token** definition often expressed as a decay in token balance  
 **UTXO** definition Unspent Transaction Output.  
 **e-Money** definition electronic money.  
-**Era** definition is a Similar idea for a page in pagination.
+**Era** definition is a Similar idea for a page in pagination.  
 **FIFO** definition First-In-First-Out.  
-**Slot** definition is Similar to the idea of the index on each page of pagination.
+**Slot** definition is Similar to the idea of the index on each page of pagination.  
 
 ## License
 
