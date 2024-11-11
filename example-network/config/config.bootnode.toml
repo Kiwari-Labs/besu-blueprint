@@ -1,11 +1,11 @@
-[data]
+# [data]
 genesis-file = "/config/genesis.json"
 data-path = "/data/"
 data-storage-format = "FOREST"
 node-private-key-file = "/config/key"
 static-nodes-file = "/config/static.nodes.json"
 
-[network]
+# [network]
 nat-method = "AUTO"
 bootnodes = [
     "enode://553afe137559c4fbf5d0c7646603539755a37cf60b71a1a1574845ba4a7c822a4e422f908c2487c9b6b00dc262aafba8daa45de60bda93ba92ca25524d857eb0@bootnode1:30303",
@@ -13,10 +13,10 @@ bootnodes = [
 ]
 discovery-enabled = false
 
-[transaction]
+# [transaction]
 tx-pool = "SEQUENCED"
 tx-pool-no-local-priority = true
 
-[experiment]
+# [experiment]
 Xdns-enabled = true
 Xdns-update-enabled = true

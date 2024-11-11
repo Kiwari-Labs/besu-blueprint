@@ -1,7 +1,6 @@
 x-besu: &besu
   image: hyperledger/besu:24.8.0
-  # image: kiwarilabs/besu:<version>-precompile   # adding stateful precompile
-  # imags: kiwarilabs/besu:<version>-tx-waive     # adding system contract waiving transaction fee
+  # image: kiwarilabs/besu:<version>
 
 services:
   validator1:
@@ -9,7 +8,7 @@ services:
     hostname: validator-1
     volumes:
       - "./data/node1:/data/"
-      - "./config/genesis.json:/config/genesis.json"
+      - "./config/genesis.local.json:/config/genesis.json"
       - "./config/static.nodes.json:/config/static.nodes.json"
       - "./config/config.toml:/config/config.toml"
       - "./validators/node1/key:/config/key"
@@ -23,7 +22,7 @@ services:
     hostname: validator-2
     volumes:
       - "./data/node2:/data/"
-      - "./config/genesis.json:/config/genesis.json"
+      - "./config/genesis.local.json:/config/genesis.json"
       - "./config/static.nodes.json:/config/static.nodes.json"
       - "./config/config.toml:/config/config.toml"
       - "./validators/node2/key:/config/key"
@@ -37,8 +36,8 @@ services:
     hostname: validator-3
     volumes:
       - "./data/node3:/data/"
-      - "./config/genesis.json:/config/genesis.json"
-      - "./config/static.nodes.json:/config/static-nodes.json"
+      - "./config/genesis.local.json:/config/genesis.json"
+      - "./config/static.nodes.json:/config/static.nodes.json"
       - "./config/config.toml:/config/config.toml"
       - "./validators/node3/key:/config/key"
     command:
@@ -51,7 +50,7 @@ services:
     hostname: validator-4
     volumes:
       - "./data/node4:/data/"
-      - "./config/genesis.json:/config/genesis.json"
+      - "./config/genesis.local.json:/config/genesis.json"
       - "./config/static.nodes.json:/config/static.nodes.json"
       - "./config/config.toml:/config/config.toml"
       - "./validators/node4/key:/config/key"
@@ -65,7 +64,7 @@ services:
     hostname: rpc
     volumes:
       - "./data/rpc:/data/"
-      - "./config/genesis.json:/config/genesis.json"
+      - "./config/genesis.local.json:/config/genesis.json"
       - "./config/static.nodes.json:/config/static.nodes.json"
       - "./config/config.rpc.toml:/config/config.rpc.toml"
     command:
@@ -82,7 +81,7 @@ services:
   #   hostname: besu-bootnode1
   #   volumes:
   #     - "./data/rpc:/data/"
-  #     - "./config/genesis.json:/config/genesis.json"
+  #     - "./config/genesis.local.json:/config/genesis.json"
   #     - "./config/static.nodes.json:/config/static.nodes.json"
   #     - "./config/config.bootnode.toml:/config/config.bootnode.toml"
   #     - "./bootnodes/bootnode1/key:/config/key"
@@ -96,7 +95,7 @@ services:
   #   hostname: besu-bootnode2
   #   volumes:
   #     - "./data/rpc:/data/"
-  #     - "./config/genesis.json:/config/genesis.json"
+  #     - "./config/genesis.local.json:/config/genesis.json"
   #     - "./config/static.nodes.json:/config/static.nodes.json"
   #     - "./config/config.bootnode.toml:/config/config.bootnode.toml"
   #     - "./bootnodes/bootnode2/key:/config/key"

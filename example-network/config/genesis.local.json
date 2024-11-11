@@ -1,0 +1,60 @@
+{
+  "config": {
+    "chainId": 31337,
+    "homesteadBlock": 0,
+    "eip150Block": 0,
+    "eip155Block": 0,
+    "eip158Block": 0,
+    "byzantiumBlock": 0,
+    "constantinopleBlock": 0,
+    "constantinopleFixBlock": 0,
+    "istanbulBlock": 0,
+    "muirGlacierBlock": 0,
+    "berlinBlock": 0,
+    "londonBlock": 0,
+    "shanghaiTime": 0,
+    "zeroBaseFee": true,
+    "contractSizeLimit": 2147483647,
+    "qbft": {
+      "blockperiodseconds": 15,
+      "epochlength": 3000,
+      "requesttimeoutseconds": 30
+    }
+  },
+  "nonce": "0x0",
+  "timestamp": "0x652399D3",
+  "gasLimit": "0x4C845880",
+  "difficulty": "0x1",
+  "mixHash": "0x0000000000000000000000000000000000000000000000000000000000000000",
+  "coinbase": "0x0000000000000000000000000000000000000000",
+  "alloc": {
+    "0x32D5a21376C0dF3F98200a00380b06adeE341B91": {
+      "balance": "0x0"
+    },
+    "0x667948aa38671a73ffcb6570ee04002a135f5eae": {
+      "comment": "VALIDATOR_1",
+      "balance": "0x0"
+    },
+    "0xa6d116ba44c70bb4d6080286c37ede2933d245a9": {
+      "comment": "VALIDATOR_2",
+      "balance": "0x0"
+    },
+    "0xc0b3a6a96dd18b9d1bb043be4017f96ad98c57bb": {
+      "comment": "VALIDATOR_3",
+      "balance": "0x0"
+    },
+    "0xd4356d03e57b18de5d581514c7f8ceaa6e151a1b": {
+      "comment": "VALIDATOR_4",
+      "balance": "0x0"
+    },
+    "0x0100000000000000000000000000000000000001": {
+      "comment": "RESERVED_SIMPLE_STATEFUL",
+      "balance": "0x1"
+    },
+    "0x0100000000000000000000000000000000000002": {
+      "comment": "RESERVED_SCDLLS",
+      "balance": "0x1"
+    }
+  },
+  "extraData": "0xf87aa00000000000000000000000000000000000000000000000000000000000000000f85494667948aa38671a73ffcb6570ee04002a135f5eae94a6d116ba44c70bb4d6080286c37ede2933d245a994c0b3a6a96dd18b9d1bb043be4017f96ad98c57bb94d4356d03e57b18de5d581514c7f8ceaa6e151a1bc080c0"
+}
