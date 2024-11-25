@@ -7,6 +7,7 @@ DLT-based Loyalty Platform (DLP) that use [hyperledger/besu](https://github.com/
 > [!TIP]  
 >`mainnet` is network for production use.  
 > `testnet` is network for develop and staging use.
+> Table below is suggestion for deploying private network for Loyalty Program use case.
 
 | Parameter    | Mainnet                                        | Testnet                                        |
 | ------------ | ---------------------------------------------- | ---------------------------------------------- |
