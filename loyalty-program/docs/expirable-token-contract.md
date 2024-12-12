@@ -11,7 +11,7 @@ A standard interface enables ERC20 tokens to possess expiration capabilities, al
 
 ## Abstract
 
-This standard introduces an extension for `ERC20` tokens, which facilitates the implementation of an expiration mechanism. Through this extension, tokens are designated a predetermined validity period, after which they become invalid and can no longer be transferred or used. This functionality proves beneficial in scenarios such as time-limited bond, loyalty reward , or game token necessitating automatic invalidation after a specific duration. The extension is meticulously crafted to seamlessly align with the existing `ERC20` standard, ensuring smooth integration with prevailing token contracts, while concurrently introducing the capability to govern and enforce token expiration at the contract level.
+This standard introduces an extension for `ERC20` tokens, which facilitates the implementation of an expiration mechanism. Through this extension, tokens are designated a predetermined validity period, after which they become invalid and can no longer be transferred or used. This functionality proves beneficial in scenarios such as time-limited bond, loyalty reward, or game token necessitating automatic invalidation after a specific duration. The extension is meticulously crafted to seamlessly align with the existing `ERC20` standard, ensuring smooth integration with prevailing token contracts, while concurrently introducing the capability to govern and enforce token expiration at the contract level.
 
 ## Motivation
 

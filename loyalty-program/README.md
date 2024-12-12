@@ -1,4 +1,4 @@
-# DLP: Distributed Ledger Technology Based Loyalty Platform
+# Loyalty Program
 
 DLT-based Loyalty Platform (DLP) that use [hyperledger/besu](https://github.com/hyperledger/besu)
 
