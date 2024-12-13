@@ -21,15 +21,9 @@ The aim is to create a digital contract system that borrows principles from trad
 - [Multilateral Agreement](https://www.law.cornell.edu/wex/multilateral) multiple parties agreements which each party fulfills their obligations.
 - [Smart legal Contract](https://lawcom.gov.uk/project/smart-contracts) automated and enforceable agreements that operate on decentralized networks without the need for intermediaries.
 
-## Rationale
+## Specification
 
-- Proxy Pattern smart contract for modularity and flexible for business logic
-- Multi-signature mechanism to ensure that all parties involved in the agreement provide their consent, enhancing security and trustworthiness.
-- High level Syntax that simplifies the development process, making it easier for users to create and manage agreements without deep knowledge of Solidity or blockchain programming.
-
-## Design and Technique
-
-#### Wrapped comparison operation into high level syntax
+### Wrapped comparison operation into high level syntax
 
 This concept refers to abstracting common comparison operations (like comparing amounts, addresses, or balances) into reusable functions or methods that simplify complex logic.  
 By wrapping these comparisons into higher-level constructs, the contract becomes more modular and easier to read, maintain, while serving secure and extendable.
@@ -169,14 +163,12 @@ contract GeneralTokenAgreement is AgreementTemplate {
 
 This example shows how to create a specific type of agreement - one that compares token amounts and verifies balances between two parties using smart contract addresses.
 
-#### Using bytes data type for flexible and struct free
+### Using bytes data type for flexible and struct free
 
 using `bytes` instead of `struct`, the Programmable Agreement Contract achieves greater flexibility, lower gas costs cause efficient data are packed from off-chain, and easier upgradeability.  
 The bytes data type enables the contract to handle dynamic and arbitrary data, making it adaptable to a wide range of use cases without requiring predefined, rigid data structures like `struct`.
 
-## Interface
-
-#### Interface of Agreement Contract
+### Interface of Agreement Contract
 
 ```solidity
 event ImplementationUpdated(address indexed oldImplementation, address indexed newImplementation);
@@ -280,7 +272,7 @@ function implementation() external view returns (address);
 
 ---
 
-#### Interface of Implementation Contract
+### Interface of Implementation Contract
 
 ```solidity
 function agreement(bytes memory x, bytes memory y) external returns (bool);
@@ -306,6 +298,12 @@ function version() external view returns (uint256);
 - Propose: Returns the current version of the agreement
 - Returns: The version number of the agreement
 
+## Rationale
+
+- Proxy Pattern smart contract for modularity and flexible for business logic
+- Multi-signature mechanism to ensure that all parties involved in the agreement provide their consent, enhancing security and trustworthiness.
+- High level Syntax that simplifies the development process, making it easier for users to create and manage agreements without deep knowledge of Solidity or blockchain programming.
+
 ## Security Considerations
 
 - [SWC126:Insufficient Gas Griefing](https://swcregistry.io/docs/SWC-126/) the complexity of logic within functions like `_verifyAgreement` could lead to situations where gas limits are exceeded when external call to `agreement` function.
@@ -314,12 +312,12 @@ function version() external view returns (uint256);
 
 ---
 
-#### Historical links related to this standard
+### Historical links related to this standard
 
 - Article from Hedera: [Smart Legal Contract](https://hedera.com/learning/smart-contracts/smart-legal-contracts)
 - Project from Law Commission UK: [Smart Legal Contract](https://lawcom.gov.uk/project/smart-contracts)
 
-#### Appendix
+### Appendix
 
 **ABI** definition Application Binary Interface  
 **Multi-Signature** definition requirement for a transaction to have two or more signatures before it can be executed

@@ -18,7 +18,7 @@ The Virtual Machine acts as a virtual processor to execute transactions on the b
 
 ## Specification
 
-## Determining the Custom Precompiled Contract Address
+### Determining the Custom Precompiled Contract Address
 
 This section explains how the address of the custom precompiled contract, `CONTRACT_ADDRESS`, is calculated.
 
