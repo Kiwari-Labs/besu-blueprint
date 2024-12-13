@@ -2,6 +2,7 @@
 title: Sorted Circular Doubly Linked List Precompiled Contract
 description: A Guidance to implementing a Sorted Circular Doubly Linked List (SCDLL) as a stateful precompile contract for complex data structure.
 author: sirawt (@MASDXI)
+ca
 status: Draft
 ---
 
@@ -21,9 +22,9 @@ status: Draft
 
 > TODO
 
-## Guidance
+## Specification
 
-#### Storage Layout
+### Storage Layout
 
 ```Solidity
 uint256 max_size;
@@ -46,7 +47,7 @@ mapping(uint256 => List) lists;
 
 The direction is represented using a boolean type: `true` (or `1`) indicates the `next` element, while `false` (or `0`) indicates the `previous` element. Element `0` is reserved as a sentinel node, allowing quick access to the first and last elements of the list. All states are stored at the `msgSender` address rather than in the precompiled state storage.
 
-#### Interfaces
+### Interfaces
 
 ```Solidity
 function size(uint256 listId) external view returns (uint256);
@@ -213,7 +214,7 @@ if exists:
   - `element`
 - Returns:
 
-#### Gas Used Logic
+### Gas Used Logic
 
 for applied in public network or network that have native token for incentivize miner node or validator node
 calculate from
@@ -225,7 +226,7 @@ for private network should considering ddos attack if too low
 - Restrict direct call from EOA
 - `MAX_SIZE` too large when call `list` and `rlist`
 
-## Mitigating Security Concern
+### Mitigating Security Concern
 
 adding pagination style for get list in smaller chunk
 
@@ -234,16 +235,15 @@ adding pagination style for get list in smaller chunk
 
 if passing start 0 is start from sentinel node size should be start from 1 to `MAX_SIZE`
 
-#### Historical links related to this standard
+### Historical links related to this standard
 
 > TODO
 
-#### Appendix
+### Appendix
 
 **EOA** definition Externally Owned Account is an account controlled by a cryptographic keypair.  
 **rlist** definition reverse list (descending)
 
-## License
+## Copyright
 
-Release under the [MIT](../LINCENSE-MIT) license.  
-Copyright (C) to author. All rights reserved.
+Copyright and related rights waived via [CC0]().
