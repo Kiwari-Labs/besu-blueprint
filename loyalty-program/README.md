@@ -1,6 +1,6 @@
 # Loyalty Program Blueprint
 
-A blueprint for building Loyalty Program with [hyperledger/besu](https://github.com/hyperledger/besu)
+A blueprint for building Loyalty Program use case with [hyperledger/besu](https://github.com/hyperledger/besu)
 
 ## Specification
 
