@@ -4,7 +4,7 @@ pragma solidity >=0.8.0 <0.9.0;
 /**
  * @title Interface of Supply Chain
  * Related Standard for Supply Chain
- * Supply Chain Operations Reference Digital Standard (SCOR DS) for Association form Supply Chain Management (ASCM)
+ * Supply Chain Operations Reference Digital Standard (SCOR DS) form Association for Supply Chain Management (ASCM)
  * Global Traceability Standard from GS1
  * ISO 9001:2015 from International Organization for Standardization (ISO)
  */
