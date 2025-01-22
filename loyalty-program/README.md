@@ -1,32 +1,32 @@
-# Loyalty Program
+# Loyalty Program Blueprint
 
-DLT-based Loyalty Platform (DLP) that use [hyperledger/besu](https://github.com/hyperledger/besu)
+A blueprint for building Loyalty Program with [hyperledger/besu](https://github.com/hyperledger/besu)
+
+## Specification
+
+The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”, “SHOULD NOT”, “RECOMMENDED”, “NOT RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be interpreted as described in RFC 2119 and RFC 8174.
 
 ### Network Parameter and Configuration
 
-> [!TIP]  
->`mainnet` is network for production use.  
+> [!NOTE]  
+> `mainnet` is network for production use.  
 > `testnet` is network for develop and staging use.
-> Table below is suggestion for deploying private network for Loyalty Program use case.
 
-| Parameter    | Mainnet                                        | Testnet                                        |
-| ------------ | ---------------------------------------------- | ---------------------------------------------- |
-| NETWORK_NAME | `DLP`                                          | `DLP Testnet`                                  |
-| CHAIN_ID     | `687680`                                       | `116687680`                                    |
-| SYMBOL       | `DLP`                                          | `tDLP`                                         |
-| RPC_URL      | `https://dlp-rpc-mainnet.domain.com`           | `https://dlp-rpc-testnet.domain.com`           |
-| EXPLORER_URL | `https://dlp-blockexplorer-mainnet.domain.com` | `https://dlp-blockexplorer-testnet.domain.com` |
-| BLOCK_PERIOD | `3` seconds                                    | `12` seconds                                   |
-| TOKEN_LOGO   | `none`                                         | `none`                                         |
-| NETWORK_LOGO | `none`                                         | `none`                                         |
+| Parameter    | Mainnet                   | Testnet                   |
+| ------------ | ------------------------- | ------------------------- |
+| NETWORK_NAME | `Loyalty Program Mainnet` | `Loyalty Program Testnet` |
+| CHAIN_ID     | `4062100861`              | `116687680`               |
+| CHAIN_ID_HEX | `0xf21ebd7d`              | `116687680`               |
+| SYMBOL       | `LP`                      | `tLP`                     |
+| BLOCK_PERIOD | `3` seconds               | `12` seconds              |
 
-If including latency of network, other service and etc (`~3` seconds). user may wait up to `6` seconds for mainnet and `15` seconds for testnet.
+If including latency of network, other service etc. (`~3` seconds). User may wait up to `6` seconds for `mainnet` and `15` seconds for `testnet`.
 
 > [!NOTE]
-> `CHAIN_ID` generate form ASCII code of the `SYMBOL`  
-> The network operates without a native token for transaction fees and is built as a zero-transaction fee system.  
-> However, it still requires a currency symbol for functional representation for third-party wallet application like  
-> metamask, rabbit, block explorer and other.
+> `CHAIN_ID` generate form CRC-32/ISO hash of `NETWORK_NAME`/
+
+The network **RECOMMENDED** to operate without a native token means no transaction fee on this network.  
+However, it still **REQUIRED** a currency `SYMBOL` for functional representation for related system or application e.g. wallet, block explorer and other.
 
 ### Node Type and Hardware Requirement
 
@@ -37,7 +37,7 @@ If including latency of network, other service and etc (`~3` seconds). user may 
 | **Storage**  | 1 TB                       | 2 TB          | 500 GB         | 100 GB                     | 250 GB        | 50 GB          |
 | **Internet** | 100 Mb/s                   | 100 Mb/s      | 100 Mb/s       | 25 Mb/s                    | 25 Mb/s       | 25 Mb/s        |
 
-> [!TIP]
+> [!NOTE]
 > - **CPU:** Focus on high clock speed rather than core count for optimal performance. A high clock speed, typically above 3.0 GHz
 > - **Storage:** SSD is recommended for faster data access and better overall performance.
 > - **RPC:** is running as archive node not pruning any data.
@@ -54,14 +54,15 @@ If including latency of network, other service and etc (`~3` seconds). user may 
 | Google Cloud       | `n2-highmem-16`     | `n2-highmem-8`   | `n2-standard-2` | `n2-standard-2`     | `n2-standard-1` | `e2-micro`           |
 | IBM Cloud          | `bx2-16x64`         | `bx2-8x32`       | `bx2-2x8`       | `bx2-2x8`           | `bx2-2x4`       | `bx2-1x2`            |
 
-> [!NOTE]
-> Some instance models may not exactly meet the hardware requirements  mentioned above but have been chosen for cost-effectiveness and resource optimization in relation to the tasks of each node.
+Some instance models **MAY** not exactly meet the hardware requirements mentioned above but have been chosen for cost-effectiveness and resource optimization in relation to the tasks of each node.
 
 | Node Type  | Recommended | Minimum |
 | ---------- | ----------- | ------- |
 | validators | 8           | 4       |
 | boot       | 4           | 2       |
 | rpc        | n > 2       | 2       |
+
+### Example Client Configuration
 
 The `[experiment]` section in the `config.toml` can be used to fine-tune network performance based on your specific deployment requirements, see [performance troubleshooting guideline](https://besu.hyperledger.org/public-networks/how-to/troubleshoot/performance).
 
@@ -81,39 +82,27 @@ Xplugin-rocksdb-background-thread-count = 4
 Xplugin-rocksdb-high-spec-enabled = true
 ```
 
-### Asset Classification
+### ERC standard for each asset class on the network
 
-- [ERC-7818]() for loyalty point.
-- [ERC-7818]() with decimal set to `0` and extending [ERC-1046]() for simple essential voucher or coupon.
+- [ERC-20]() for loyalty point without expiration mechanism
+- [ERC-7818]() for loyalty point with expiration mechanism.
+- [ERC-7818]() with decimal set to `0` and extending [ERC-1046]() for simple/essential voucher or coupon.
 - [ERC-7858]() for unique voucher or coupon.
 
-### Keys differentiate from official `hyperledger/besu` client
+### Mitigate ERC-7818 sorted list limitation
 
-Stateful Precompiled Contract
+To mitigate high `gasUsed` when maintaining large sorted list **REQUIRED** adding stateful precompiled contract to `hyperledger/besu` client. Source code of forked `hyperledger/besu` that implementing stateful precompiled contract can be found [here](https://github.com/Kiwari-labs/besu).
 
-- `LinkedListStatefulPrecompiledContract` at address 
-`0x12bb07c003ca88db19f4301cdf2addeb9fe4c93f` which is generated from `keccak256(name).toBytes().slice(0, 20)`
+### Expanding Loyalty Point / Voucher across network
 
-source code of forked `hyperledger/besu` that implementing system contract and stateful precompiled can be found on [repository](https://github.com/Kiwari-labs/besu)
+For expanding Loyalty point or voucher to other blockchain network seem to be challenge due to the Loyalty point might be expirable and lost overtime on origin network. However, it can be done by ...
 
-Service Smart Contract
-
-| Contract Name                 | Mainnet Address (desirable)                  | Testnet Address (desirable)                  |
-| ----------------------------- | -------------------------------------------- | -------------------------------------------- |
-| `PointTokenFactoryContract`   | `0x572d9d345fea6750819481012750b2440a10e8cb` | `0xc6fb65bf5fea6750819481012750b2440a10e8cb` |
-| `VoucherTokenFactoryContract` | `0x572d9d34f832fd4da900ed5f68e4d87ab54cf3e0` | `0xc6fb65bff832fd4da900ed5f68e4d87ab54cf3e0` |
-| `AgreementFactoryContract`    | `0x572d9d34d35e0a6dae42c724a1c1335b3a36d599` | `0xc6fb65bfd35e0a6dae42c724a1c1335b3a36d599` |
-| `OtherContract`               | `0x572d9d34d35`                              | `0xc6fb65bf`                                 |
-
-> [!NOTE]
-> The deployed address may differ from the desired one if it is manually deployed from an externally owned account (EOA) and not specified as a pre-deployed contract in the genesis configuration file.  
-
-source code of each service contracts are store at [monorepo-service-contracts](https://github.com/Kiwari-labs/monorepo-service-contracts)
+source code of all service contracts are store at [monorepo-service-contracts](https://github.com/Kiwari-labs/monorepo-service-contracts)
 
 > [!WARNING]
 > `stateful-precompile-contract` and `service-contracts` are under Development may change in the future.
 
-### Run example network with docker-compose
+### Run example network with the docker-compose
 
 command to start example network
 
@@ -137,7 +126,6 @@ command to clean up and reset network
 
 For support or any inquiries, feel free to reach out to us at [github-issue](https://github.com/Kiwari-labs/) or kiwarilabs@protonmail.com
 
-### License
+### Copyright
 
-This repository is released under the [BUSL-1.1](../LICENSE-BUSL).  
-Copyright (C) Kiwari Labs. All rights reserved.
+Copyright 2024 Kiwari Labs Licensed under the [BUSL-1.1](../LICENSE-BUSL).
