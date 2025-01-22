@@ -81,17 +81,18 @@ Xplugin-rocksdb-background-thread-count = 4
 Xplugin-rocksdb-high-spec-enabled = true
 ```
 
+### Asset Classification
+
+- [ERC-7818]() for loyalty point.
+- [ERC-7818]() with decimal set to `0` and extending [ERC-1046]() for simple essential voucher or coupon.
+- [ERC-7858]() for unique voucher or coupon.
+
 ### Keys differentiate from official `hyperledger/besu` client
-
-System Contract Waiving Transaction Fee
-
-- `WaivingTransactionFeeContract` at address 
-`0xfcd36b9911ea5844070581a577ae85b5457a3897` which is generate from `keccak256(name).toBytes().slice(0, 20)`
 
 Stateful Precompiled Contract
 
 - `LinkedListStatefulPrecompiledContract` at address 
-`0x12bb07c003ca88db19f4301cdf2addeb9fe4c93f` which is generate from `keccak256(name).toBytes().slice(0, 20)`
+`0x12bb07c003ca88db19f4301cdf2addeb9fe4c93f` which is generated from `keccak256(name).toBytes().slice(0, 20)`
 
 source code of forked `hyperledger/besu` that implementing system contract and stateful precompiled can be found on [repository](https://github.com/Kiwari-labs/besu)
 
@@ -101,14 +102,11 @@ Service Smart Contract
 | ----------------------------- | -------------------------------------------- | -------------------------------------------- |
 | `PointTokenFactoryContract`   | `0x572d9d345fea6750819481012750b2440a10e8cb` | `0xc6fb65bf5fea6750819481012750b2440a10e8cb` |
 | `VoucherTokenFactoryContract` | `0x572d9d34f832fd4da900ed5f68e4d87ab54cf3e0` | `0xc6fb65bff832fd4da900ed5f68e4d87ab54cf3e0` |
-| `CouponTokenFactoryContract`  | `0x572d9d34d8cc7479330f22cf9b849fdc3722ff7e` | `0xc6fb65bfd8cc7479330f22cf9b849fdc3722ff7e` |
-| `CampaignFactoryContract`     | `0x572d9d3422bdb2a4e032cbfb3420eb569470fb19` | `0xc6fb65bf22bdb2a4e032cbfb3420eb569470fb19` |
 | `AgreementFactoryContract`    | `0x572d9d34d35e0a6dae42c724a1c1335b3a36d599` | `0xc6fb65bfd35e0a6dae42c724a1c1335b3a36d599` |
 | `OtherContract`               | `0x572d9d34d35`                              | `0xc6fb65bf`                                 |
 
 > [!NOTE]
 > The deployed address may differ from the desired one if it is manually deployed from an externally owned account (EOA) and not specified as a pre-deployed contract in the genesis configuration file.  
-> `ERC721` and `ERC1155` may suitable for both voucher and coupon.
 
 source code of each service contracts are store at [monorepo-service-contracts](https://github.com/Kiwari-labs/monorepo-service-contracts)
 
