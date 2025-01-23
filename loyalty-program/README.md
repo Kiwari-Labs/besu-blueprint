@@ -122,10 +122,10 @@ command to clean up and reset network
 ./docker-compose-down.sh
 ```
 
-### Support and Issue
+## Support and Issue
 
 For support or any inquiries, feel free to reach out to us at [github-issue](https://github.com/Kiwari-labs/) or kiwarilabs@protonmail.com
 
-### Copyright
+## Copyright
 
 Copyright 2024 Kiwari Labs Licensed under the [BUSL-1.1](../LICENSE-BUSL).
